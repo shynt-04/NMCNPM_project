@@ -1,40 +1,72 @@
 # admin.py
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, Payment, PaymentStatus, FamilyMember, Article
-from django.db import IntegrityError
-from .models import Article
-from django.shortcuts import render
-from django.contrib.auth.models import Group
+from .models import Payment, PaymentStatus, FamilyMember, Article, RoomUser
 
-admin.site.register(Article)
+# Register the Article model
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ('title', 'content', 'date')
+    search_fields = ('title', 'author')
+    list_filter = ('date',)
+    readonly_fields = ('date',)
 
-# CustomUserAdmin with both room_id uniqueness check and is_approved field handling
-class CustomUserAdmin(UserAdmin):
-    model = CustomUser
-    list_display = ('room_id', 'phone_number' ,'username', 'email', 'is_approved')  # Display room_id, email, and approval status
-    list_filter = ('room_id', 'is_approved',)  # Filter by approval status
-    search_fields = ('room_id', 'email')  # Allow searching by room_id and email
+admin.site.register(Article, ArticleAdmin)
 
-    # Customize the fields displayed on the add/edit page
-    fieldsets = UserAdmin.fieldsets + (
-        (None, {'fields': ('is_approved',)}),  # Add 'is_approved' field to the form
+# Customized admin for RoomUser
+class RoomUserAdmin(UserAdmin):  # Inherit from UserAdmin for User-specific functionality
+    model = RoomUser
+    # Fields to display in the list view
+    list_display = ('room_id', 'username', 'is_approved', 'registry_email', 'phone_number')
+    # Fields to filter by in the right sidebar
+    list_filter = ('is_approved',)
+    # Fields that are searchable
+    search_fields = ('room_id', 'username', 'phone_number')
+    # Ordering for the list view
+    ordering = ('room_id',)
+    # Read-only fields (optional, for fields you don’t want users to edit directly)
+    readonly_fields = ('room_id',)
+
+    # Customize the layout of the add/edit form with fieldsets
+    fieldsets = (
+        (None, {
+            'fields': ('room_id', 'username', 'is_approved', 'password')
+        }),
+        ('Contact Information', {
+            'fields': ('registry_email', 'phone_number')
+        }),
+        ('Permissions', {
+            'fields': ('is_staff', 'is_superuser', 'user_permissions', 'groups')
+        }),
     )
-    add_fieldsets = UserAdmin.add_fieldsets + (
-        (None, {'fields': ('room_id', 'is_approved')}),  # Add these fields to the add form as well
+
+# Register RoomUser with the custom admin class
+admin.site.register(RoomUser, RoomUserAdmin)
+
+# Register other models
+admin.site.register(Payment)
+admin.site.register(PaymentStatus)
+class FamilyMemberAdmin(admin.ModelAdmin):
+    # Display these fields in the list view of the admin
+    list_display = ('room_id', 'first_name', 'last_name', 'age', 'email', 'phone_number')
+    
+    # Add search functionality for these fields
+    search_fields = ('first_name', 'last_name', 'email', 'phone_number')
+    
+    # Allow filtering by room ID
+    list_filter = ('room_id',)
+    
+    # Specify read-only fields, if applicable
+    readonly_fields = ('room_id',)
+    
+    # Organize fields into sections in the detail view
+    fieldsets = (
+        (None, {
+            'fields': ('room_id', 'first_name', 'last_name', 'age')
+        }),
+        ('Contact Information', {
+            'fields': ('email', 'phone_number')
+        }),
     )
 
-    def save_model(self, request, obj, form, change):
-
-        super().save_model(request, obj, form, change)  # Call the parent save_model method to actually save the object
-
-# Register the CustomUser model with the admin
-admin.site.register(CustomUser, CustomUserAdmin)
-
-# Service view function (no changes needed here)
-def service_view(request):
-    user = request.user
-    family_group = Group.objects.get(name='Tên group của bạn')  # Adjust group name as necessary
-    is_member = family_group.user_set.filter(id=user.id).exists()
-
-    return render(request, 'service.html', {'is_member': is_member})
+# Register the custom admin class with the FamilyMember model
+admin.site.register(FamilyMember, FamilyMemberAdmin)

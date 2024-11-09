@@ -1,8 +1,8 @@
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import logout
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
-from .models import FamilyMember, CustomUser, PaymentStatus, Payment, Article
+from .models import FamilyMember, PaymentStatus, Payment, Article, RoomUser
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views import generic
@@ -43,20 +43,25 @@ def contact(request):
     return render(request, 'app/contact.html')
 
 def notification(request):
-    return render(request, 'app/notification.html')
+    return render(request, 'app/notification.html', {'articles': Article.objects.all()})
 
 @login_required
-def personal(request):
+def list_member(request):
     user = request.user
-    family_members = FamilyMember.objects.filter(room_id=user.room_id)
-    context = {
-        'family_members': family_members
-    }
-    return render(request, 'app/personal.html', context)
+    try:
+        # Fetch all family members for the logged-in user's room
+        family_members = FamilyMember.objects.filter(room_id=user.room_id)
+    except AttributeError:
+        # If `user.roomuser` or `room_id` is not accessible, log this or handle it as needed
+        family_members = []
+
+    # Pass family_members directly to the template
+    return render(request, 'app/member.html', {'family_members': family_members})
+
 
 @login_required
 def changepassword(request):
-    user = CustomUser.objects.get(username=request.user.username)
+    user = RoomUser.objects.get(username=request.user.username)
     context = {
         'room_id': user.room_id,
         'username': user.username,
@@ -70,10 +75,10 @@ def password_change_done(request):
 
 @login_required
 def service(request):
-    user = CustomUser.objects.get(username=request.user.username)
+    user = RoomUser.objects.get(username=request.user.username)
     payments = PaymentStatus.objects.filter(room_id=user.room_id)
     payment_infos = Payment.objects.filter(statuses__in=payments)
-    user_info_list = [
+    payment_info_list = [
         {
             'khoan_thu': payment.payment,
             'phi': payment_info.amount,
@@ -82,7 +87,32 @@ def service(request):
         }
         for payment, payment_info in zip(payments, payment_infos)
     ]
-    return render(request, 'app/service.html', {'user_info_list': user_info_list})
+    return render(request, 'app/service.html', {'payment_info_list': payment_info_list})
+
+@login_required
+def add_member(request):
+    if request.method == 'POST':
+        # Fetch the RoomUser instance associated with the current user
+        room_user = get_object_or_404(RoomUser, username=request.user.username)
+
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        age = request.POST.get('age')
+        email = request.POST.get('email')
+        phone_number = request.POST.get('phone_number')
+
+        # Create the FamilyMember and assign the RoomUser instance
+        FamilyMember.objects.create(
+            room_id=room_user,
+            first_name=first_name,
+            last_name=last_name,
+            age=age,
+            email=email,
+            phone_number=phone_number
+        )
+        return redirect('service')
+    
+    return render(request, 'app/add_member.html')
 
 @login_required
 def wait(request):

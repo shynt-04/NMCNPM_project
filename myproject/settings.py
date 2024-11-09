@@ -9,7 +9,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-AUTH_USER_MODEL = 'nmcnpmapp.CustomUser'
+AUTH_USER_MODEL = 'nmcnpmapp.RoomUser'
 
 CORS_ALLOW_ALL_ORIGINS = True
 

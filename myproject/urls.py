@@ -19,10 +19,12 @@ urlpatterns = [
     path("service/", views.service, name="service"),
     path("wait/", views.wait, name="wait"),
     path("notification/", views.notification, name="notification"),
-    path("personal/", views.personal, name="personal"),
+    # path("personal/", views.personal, name="personal"),
     path("changepassword/", views.changepassword, name="changepassword"),
     path('change-password/', PasswordChangeView.as_view(success_url='/change-password-done/'), name='password_change'),
     path('change-password-done/', password_change_done, name='password_change_done'),
+    path("add_member/", views.add_member, name="add_member"),
+    path('list_member/', views.list_member, name='list_member'),
 ]
 
 if settings.DEBUG:
