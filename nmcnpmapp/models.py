@@ -2,16 +2,17 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.conf import settings
 
-class CustomUser(models.Model):
+class CustomUser(AbstractUser):
     room_id = models.CharField(max_length=100, unique=True)
-    username = models.CharField(max_length=100)
-    password = models.CharField(max_length=100)
+    username = models.CharField(max_length=100, unique=True)
+    # password = models.CharField(max_length=100)
     is_approved = models.BooleanField(default=False)
     registry_email = models.EmailField(default="lol@gamil.com")
     phone_number = models.CharField(max_length=10, default="0123456789")
 
     def __str__(self):
         return self.username
+
 #Store payment details
 class Payment(models.Model):
     payment = models.CharField(max_length=255)
@@ -29,6 +30,7 @@ class PaymentStatus(models.Model):
 
     def __str__(self) -> str:
         return f"{self.room_id.room_id} - {self.payment.payment} - {self.status}"
+
 #Store family members details
 class FamilyMember(models.Model):
     id = models.AutoField(primary_key=True)

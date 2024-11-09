@@ -15,3 +15,822 @@ Traceback (most recent call last):
   File "E:\TaiLieuBachKhoa\CNPM\IT3080_project-a192b08aa7f4389d37d104a091d91f67bbaa1607\.venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
     raise TemplateDoesNotExist(template_name, chain=chain)
 django.template.exceptions.TemplateDoesNotExist: app/contact.html
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\models.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\models.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\models.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\models.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\models.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\models.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py", line 36, in homepage
+    return render(request, 'myapp/homepage.html', {'articles': articles})
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: myapp/homepage.html
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /signup/
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: nmcnpmapp_customuser.room_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\generic\edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\generic\edit.py", line 150, in post
+    if form.is_valid():
+       ~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\forms\forms.py", line 197, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\forms\forms.py", line 192, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\forms\forms.py", line 327, in full_clean
+    self._post_clean()
+    ~~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\auth\forms.py", line 249, in _post_clean
+    super()._post_clean()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\forms\models.py", line 504, in _post_clean
+    self.validate_unique()
+    ~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\forms\models.py", line 513, in validate_unique
+    self.instance.validate_unique(exclude=exclude)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\base.py", line 1377, in validate_unique
+    errors = self._perform_unique_checks(unique_checks)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\base.py", line 1487, in _perform_unique_checks
+    if qs.exists():
+       ~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\query.py", line 1288, in exists
+    return self.query.has_results(using=self.db)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\sql\query.py", line 660, in has_results
+    return compiler.has_results()
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1542, in has_results
+    return bool(self.execute_sql(SINGLE))
+                ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such column: nmcnpmapp_customuser.room_id
+Internal Server Error: /signup/
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: nmcnpmapp_customuser
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\generic\edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\generic\edit.py", line 150, in post
+    if form.is_valid():
+       ~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\forms\forms.py", line 197, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\forms\forms.py", line 192, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\forms\forms.py", line 325, in full_clean
+    self._clean_fields()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\forms\forms.py", line 335, in _clean_fields
+    value = getattr(self, "clean_%s" % name)()
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\auth\forms.py", line 268, in clean_username
+    and self._meta.model.objects.filter(username__iexact=username).exists()
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\query.py", line 1288, in exists
+    return self.query.has_results(using=self.db)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\sql\query.py", line 660, in has_results
+    return compiler.has_results()
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1542, in has_results
+    return bool(self.execute_sql(SINGLE))
+                ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: nmcnpmapp_customuser
+Internal Server Error: /signup/
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: nmcnpmapp_customuser
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\generic\edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\generic\edit.py", line 150, in post
+    if form.is_valid():
+       ~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\forms\forms.py", line 197, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\forms\forms.py", line 192, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\forms\forms.py", line 325, in full_clean
+    self._clean_fields()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\forms\forms.py", line 335, in _clean_fields
+    value = getattr(self, "clean_%s" % name)()
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\auth\forms.py", line 268, in clean_username
+    and self._meta.model.objects.filter(username__iexact=username).exists()
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\query.py", line 1288, in exists
+    return self.query.has_results(using=self.db)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\sql\query.py", line 660, in has_results
+    return compiler.has_results()
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1542, in has_results
+    return bool(self.execute_sql(SINGLE))
+                ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: nmcnpmapp_customuser
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\models.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\myproject\settings.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\myproject\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /signup/
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: nmcnpmapp_customuser
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\generic\base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\generic\edit.py", line 182, in post
+    return super().post(request, *args, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\generic\edit.py", line 150, in post
+    if form.is_valid():
+       ~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\forms\forms.py", line 197, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\forms\forms.py", line 192, in errors
+    self.full_clean()
+    ~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\forms\forms.py", line 325, in full_clean
+    self._clean_fields()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\forms\forms.py", line 335, in _clean_fields
+    value = getattr(self, "clean_%s" % name)()
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\auth\forms.py", line 268, in clean_username
+    and self._meta.model.objects.filter(username__iexact=username).exists()
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\query.py", line 1288, in exists
+    return self.query.has_results(using=self.db)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\sql\query.py", line 660, in has_results
+    return compiler.has_results()
+           ~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1542, in has_results
+    return bool(self.execute_sql(SINGLE))
+                ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: nmcnpmapp_customuser
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /admin/nmcnpmapp/customuser/add/
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\decorators\debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\auth\admin.py", line 121, in add_view
+    return self._add_view(request, form_url, extra_context)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\auth\admin.py", line 149, in _add_view
+    return super().add_view(request, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1961, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1871, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\admin.py", line 27, in save_model
+    raise IntegrityError("Room ID already exists.")
+django.db.utils.IntegrityError: Room ID already exists.
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\models.py changed, reloading.
+Watching for file changes with StatReloader
+Forbidden (CSRF token from POST incorrect.): /signup/
+Forbidden (CSRF token from POST incorrect.): /signup/
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\admin.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /admin/nmcnpmapp/customuser/1/change/
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1964, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1871, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\admin.py", line 30, in save_model
+    raise IntegrityError("Room ID already exists.")
+django.db.utils.IntegrityError: Room ID already exists.
+Watching for file changes with StatReloader
+Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\sessions\backends\base.py", line 244, in _get_session
+    return self._session_cache
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such table: django_session
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 260, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 229, in inner
+    if not self.has_permission(request):
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 202, in has_permission
+    return request.user.is_active and request.user.is_staff
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\auth\middleware.py", line 37, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ~~~~~~~~^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\auth\middleware.py", line 17, in get_user
+    request._cached_user = auth.get_user(request)
+                           ~~~~~~~~~~~~~^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\auth\__init__.py", line 209, in get_user
+    user_id = _get_user_session_key(request)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\auth\__init__.py", line 62, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+                                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\sessions\backends\base.py", line 55, in __getitem__
+    return self._session[key]
+           ^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\sessions\backends\base.py", line 249, in _get_session
+    self._session_cache = self.load()
+                          ~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\sessions\backends\db.py", line 55, in load
+    s = self._get_session_from_db()
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\sessions\backends\db.py", line 34, in _get_session_from_db
+    return self.model.objects.get(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        session_key=self.session_key, expire_date__gt=timezone.now()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\backends\sqlite3\base.py", line 354, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: no such table: django_session
+Watching for file changes with StatReloader
+Internal Server Error: /admin/nmcnpmapp/customuser/1/change/
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\admin\options.py", line 718, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\views\decorators\cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\admin\sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1964, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1820, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\admin\options.py", line 1871, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\admin.py", line 30, in save_model
+    raise IntegrityError("Room ID already exists.")
+django.db.utils.IntegrityError: Room ID already exists.
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\admin.py changed, reloading.
+Watching for file changes with StatReloader
+Forbidden (CSRF token missing.): /login/
+Forbidden (CSRF token missing.): /login/
+Forbidden (CSRF token missing.): /login/
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Forbidden (CSRF token from POST incorrect.): /login/
+Forbidden (CSRF token from POST incorrect.): /login/
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\models.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py", line 37, in homepage
+    return render(request, 'app/homepage.html', {'articles': articles})
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\base.py", line 573, in invalid_block_tag
+    raise self.error(
+    ...<3 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 14: 'static'. Did you forget to register or load this tag?
+Internal Server Error: /personal/
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py", line 55, in personal
+    return render(request, 'app/personal.html', context)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: app/personal.html
+Forbidden (CSRF token from POST incorrect.): /signup/
+Watching for file changes with StatReloader
+Forbidden (CSRF token from POST incorrect.): /signup/
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /amin/
+Forbidden (CSRF token from POST incorrect.): /login/
+Watching for file changes with StatReloader
+Internal Server Error: /personal/
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py", line 55, in personal
+    return render(request, 'app/personal.html', context)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: app/personal.html
+Internal Server Error: /service/
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py", line 85, in service
+    return render(request, 'app/service.html', {'user_info_list': user_info_list})
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: app/service.html
+Internal Server Error: /service/
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py", line 85, in service
+    return render(request, 'app/service.html', {'user_info_list': user_info_list})
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\base.py", line 573, in invalid_block_tag
+    raise self.error(
+    ...<3 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 79: 'static'. Did you forget to register or load this tag?

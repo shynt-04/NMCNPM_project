@@ -41,10 +41,24 @@
                 <li class="nav-item"><a class="nav-link" href="/contact">Liên hệ</a></li>                
                 <li class="nav-item"><a class="nav-link" href="/notification">Thông báo</a></li>                
             </ul>
+            {% if user.is_approved %}
+            <div class="custom-div3">
+                <button class="user">{{ user.username }}</button>
+                <ul class="sub-user">
+                    <li>
+                        <a href="/changepassword">Đổi mật khẩu</a>
+                    </li>
+                    <li>
+                        <a href="/logout">Đăng xuất</a>
+                    </li>
+                </ul>
+            </div>
+            {% else %}
             <div class="navbar-nav">
                 <a class="btn btn-outline-primary mr-2" href="/login">Đăng nhập</a>
                 <a class="btn btn-outline-success" href="/signup">Đăng ký</a>
             </div>
+            {% endif %}
         </div>
     </nav>
 

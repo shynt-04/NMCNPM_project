@@ -39,3 +39,48 @@
 .navbar-nav .nav-item:hover {
     background-color: #adb5bd;  /* Nền xám nhạt khi hover */
 }
+
+.user {
+  border-radius: 10px;
+  background-color: #456088;
+  border: #456088 1px solid;
+  color: white;
+  font-size: large;
+}
+
+.user:hover {
+  color: #87A4CF;
+}
+
+.sub-user {
+  display: none;
+  width: 20%;
+  margin: 0 auto 0 21%;
+  position: absolute;
+  top: 45px;
+  left: 66%;
+}
+
+.sub-user>li {
+  margin: 0;
+}
+
+.sub-user>li>a {
+  display: block;
+  color: #333;
+  width: 40%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border: #333 1px solid;
+  text-align: center;
+  background-color: white;
+}
+
+.sub-user>li>a:hover {
+  color: #87A4CF;
+  text-decoration: none;
+}
+
+.custom-div3:hover .sub-user {
+  display: block;
+}

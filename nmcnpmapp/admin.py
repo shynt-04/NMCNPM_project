@@ -20,15 +20,11 @@ class CustomUserAdmin(UserAdmin):
     fieldsets = UserAdmin.fieldsets + (
         (None, {'fields': ('is_approved',)}),  # Add 'is_approved' field to the form
     )
+    add_fieldsets = UserAdmin.add_fieldsets + (
+        (None, {'fields': ('room_id', 'is_approved')}),  # Add these fields to the add form as well
+    )
 
     def save_model(self, request, obj, form, change):
-        # Check if the room_id already exists before saving
-        if CustomUser.objects.filter(room_id=obj.room_id).exists():
-            raise IntegrityError("Room ID already exists.")
-        
-        # Custom logic to handle the is_approved field (if any specific rules are needed)
-        if obj.is_approved and not obj.email:
-            raise IntegrityError("An approved user must have an email address.")
 
         super().save_model(request, obj, form, change)  # Call the parent save_model method to actually save the object
 

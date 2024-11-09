@@ -10,6 +10,7 @@ from django.contrib.auth.models import Group
 
 def login_view(request):
     if request.method == 'POST':
+        print(request.POST)
         form = CustomAuthenticationForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
@@ -17,7 +18,7 @@ def login_view(request):
                 login(request, user)
                 return redirect('homepage')
             else:
-                return render(request, 'myapp/wait.html')
+                return render(request, 'app/wait.html')
     else:
         form = CustomAuthenticationForm()
     return render(request, 'registration/login.html', {'form': form})
@@ -33,16 +34,16 @@ class SignUpView(generic.CreateView):
 
 def homepage(request):
     articles = Article.objects.all()
-    return render(request, 'myapp/homepage.html', {'articles': articles})
+    return render(request, 'app/homepage.html', {'articles': articles})
 
 def about(request):
-    return render(request, 'myapp/about.html')
+    return render(request, 'app/about.html')
 
 def contact(request):
-    return render(request, 'myapp/contact.html')
+    return render(request, 'app/contact.html')
 
 def notification(request):
-    return render(request, 'myapp/notification.html')
+    return render(request, 'app/notification.html')
 
 @login_required
 def personal(request):
@@ -51,7 +52,7 @@ def personal(request):
     context = {
         'family_members': family_members
     }
-    return render(request, 'myapp/personal.html', context)
+    return render(request, 'app/personal.html', context)
 
 @login_required
 def changepassword(request):
@@ -62,10 +63,10 @@ def changepassword(request):
         'registry_email': user.registry_email,
         'phone_number': user.phone_number
     }
-    return render(request, 'myapp/changepassword.html', context)
+    return render(request, 'app/changepassword.html', context)
 @login_required
 def password_change_done(request):
-    return render(request, 'myapp/homepage.html')
+    return render(request, 'app/homepage.html')
 
 @login_required
 def service(request):
@@ -81,7 +82,7 @@ def service(request):
         }
         for payment, payment_info in zip(payments, payment_infos)
     ]
-    return render(request, 'myapp/service.html', {'user_info_list': user_info_list})
+    return render(request, 'app/service.html', {'user_info_list': user_info_list})
 
 @login_required
 def wait(request):
