@@ -13,17 +13,52 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6divZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
     crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+    <style>
+        /* General Header Styling with Centered Text */
+        .homepage-header {
+            background: url("{% static 'img/building.png' %}") no-repeat center center; /* Set the background image */
+            background-size: cover; /* Ensure the background covers the entire header without stretching */
+            background-position: center center; /* Center the image */
+            color: white;
+            display: flex;
+            align-items: center; /* Center content vertically */
+            justify-content: center; /* Center content horizontally */
+            text-align: center;
+            height: 40vh; /* Height of the header */
+            position: relative;
+            padding: 0 20px;
+        }
+
+        /* Title Styling */
+        .homepage-header__title {
+            font-size: 4rem; /* Increased font size for the title */
+            font-weight: bold;
+            margin: 0;
+            color: #fdfdfd; /* Soft white */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtle shadow for contrast */
+        }
+
+        /* Subtitle Styling */
+        .homepage-header__intro {
+            font-size: 2.5rem; /* Increased font size for the subtitle */
+            font-weight: 500;
+            margin-top: 5px;
+            color: #dddacc; /* Subtle golden tone */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Softer shadow */
+        }
+
+    </style>
 
 </head>
 <body>
@@ -63,13 +98,13 @@
     </nav>
 
     <!-- Header -->
-    <header class="homepage-header" style="background-color: #007bff; color: white; text-align: center; padding: 50px 0;">
+    <header class="homepage-header">
         <div class="govuk-width-container">
             <div class="homepage-header__title-container">
-                <h1 class="homepage-header__title" style="font-size: 2.5rem; font-weight: bold;">
+                <h1 class="homepage-header__title">
                     Hệ thống Quản lý Thu phí
                 </h1>
-                <span class="homepage-header__intro" style="font-size: 1.5rem; font-weight: bold;">
+                <span class="homepage-header__intro">
                     Chung cư CNPM - Hà Nội
                 </span>
             </div>

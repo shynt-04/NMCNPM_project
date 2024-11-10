@@ -60,6 +60,39 @@
             background-color: #f8f9fa;
             padding: 10px 0;
         }
+        /* General Header Styling with Centered Text */
+        .homepage-header {
+            background: url("{% static 'img/building.png' %}") no-repeat center center; /* Set the background image */
+            background-size: cover; /* Ensure the background covers the entire header without stretching */
+            background-position: center center; /* Center the image */
+            color: white;
+            display: flex;
+            align-items: center; /* Center content vertically */
+            justify-content: center; /* Center content horizontally */
+            text-align: center;
+            height: 40vh; /* Height of the header */
+            position: relative;
+            padding: 0 20px;
+        }
+
+        /* Title Styling */
+        .homepage-header__title {
+            font-size: 4rem; /* Increased font size for the title */
+            font-weight: bold;
+            margin: 0;
+            color: #fdfdfd; /* Soft white */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtle shadow for contrast */
+        }
+
+        /* Subtitle Styling */
+        .homepage-header__intro {
+            font-size: 2.5rem; /* Increased font size for the subtitle */
+            font-weight: 500;
+            margin-top: 5px;
+            color: #dddacc; /* Subtle golden tone */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Softer shadow */
+        }
+
     </style>
     <!-- Header Section -->
     <header class="homepage-header" style="background-color: #007bff; color: white; text-align: center; padding: 50px 0;">
