@@ -69,6 +69,7 @@ def changepassword(request):
         'phone_number': user.phone_number
     }
     return render(request, 'app/changepassword.html', context)
+
 @login_required
 def password_change_done(request):
     return render(request, 'app/homepage.html')
