@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ - Hệ thống Quản lý Thu phí</title>
     {% load static %}
-    <link rel="stylesheet" href="/static/css/styles.css">
-    <link rel="stylesheet" href="/static/css/newstyles.css">
-    <link rel="stylesheet" href="/static/css/responsive-tablet.css">
-    <link rel="stylesheet" href="/static/css/responsive-mobile.css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=4">
+    <link rel="stylesheet" href="{% static 'css/newstyles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive-tablet.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive-mobile.css' %}">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
@@ -38,6 +38,7 @@
             height: 40vh; /* Height of the header */
             position: relative;
             padding: 0 20px;
+            z-index: 1;
         }
 
         /* Title Styling */
@@ -167,14 +168,14 @@
                 <div class="div-child4 fade-in">
                     <div class="div-child-row">
                         <div class="div-image">
-                            <img src="{% static 'img/ngockiet.png' %}" alt="kiet" class="avatar">
+                            <img src="{% static 'img/ngockiet.jpg' %}" alt="kiet" class="avatar">
                             <p class="name">Nguyễn Ngọc Kiệt</p>
                             <p>Developer/Backend</p>
                         </div>
                         <div class="div-image">
                             <img src="{% static 'img/truongan.jpg' %}" alt="truongan" class="avatar">
                             <p class="name">Vũ Trường An</p>
-                            <p>Designer/Frontend</p>
+                            <p>Developer/Frontend</p>
                         </div>
                         <div class="div-image">
                             <img src="{% static 'img/danhvinh.jpg' %}" alt="vinh" class="avatar">
@@ -186,7 +187,7 @@
                         <div class="div-image-special">
                             <img src="{% static 'img/dangphuc.jpg' %}" alt="phuc" class="avatar">
                             <p class="name">Nguyễn Đăng Phúc</p>
-                            <p>Developer/Frontend</p>
+                            <p>Designer/Frontend</p>
                         </div>
                     </div>
                 </div>
@@ -208,11 +209,11 @@
         const image = document.querySelector(".div-child2>img");
 
         const images = [
-            "{% static 'img/homepage.png' %}",
-            "{% static 'img/service.png' %}",
-            "{% static 'img/about.png' %}",
-            "{% static 'img/login.png' %}",
-            "{% static 'img/signup.png' %}",
+            "{% static 'img/homepage.png' %}?v=1",
+            "{% static 'img/service.png' %}?",
+            "{% static 'img/about.png' %}?v=2",
+            "{% static 'img/login.png' %}?v=1",
+            "{% static 'img/signup.png' %}?v=1",
         ];
 
         const interval = setInterval(() => {
