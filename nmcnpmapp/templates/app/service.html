@@ -9,10 +9,46 @@
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="{% static 'css/home.css' %}?v=3">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}?v=1">
     <link rel="stylesheet" href="{% static 'css/newstyles.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive-tablet.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive-mobile.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Modal box styling */
+        .modal-content {
+            border-radius: 10px; /* Rounded corners for a soft look */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+            border: 1px solid #ddd; /* Light border around the box */
+        }
+
+        .modal-header, .modal-footer {
+            border-bottom: none; /* Remove default border lines */
+            border-top: none;
+        }
+
+        .modal-header h5 {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .modal-body {
+            padding: 20px; /* Add padding for spacing within the box */
+            background-color: #f8f9fa; /* Light background for content */
+        }
+
+        .table {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: center;
+            padding-top: 15px;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -65,7 +101,7 @@
     <!-- Content Section -->
     <main class="content">
         <section>
-            <h3 class="text-center py-4">Cổng dịch vụ tổ dân phố</h3>
+            <h3 class="text-center py-4">Cổng dịch vụ chung cư</h3>
             <p class="text-center"><b>Vui lòng chọn các tùy chọn dịch vụ dưới đây</b></p>
             <div class="text-center">
                 <!-- Direct link to the list_member page -->

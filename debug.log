@@ -573,3 +573,5 @@ Traceback (most recent call last):
   File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\template\loader.py", line 19, in get_template
     raise TemplateDoesNotExist(template_name, chain=chain)
 django.template.exceptions.TemplateDoesNotExist: app/changepassword.html
+Not Found: /wait.html
+Not Found: /templates/app/wait.html
