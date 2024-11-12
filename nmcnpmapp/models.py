@@ -1,41 +1,71 @@
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+
 from django.db import models
 
 class RoomUserManager(BaseUserManager):
-    def create_user(self, username, password=None, **extra_fields):
+    def create_user(self, room_id, username, registry_email, password=None, **extra_fields):
+        if not room_id:
+            raise ValueError("The Room ID field must be set")
         if not username:
-            raise ValueError("The Username field is required")
-        user = self.model(username=username, **extra_fields)
+            raise ValueError("The Username field must be set")
+        if not registry_email:
+            raise ValueError("The Email field must be set")
+        
+        if RoomUser.objects.filter(room_id=room_id).exists():
+            raise ValueError("Room ID already exists")
+        if RoomUser.objects.filter(username=username).exists():
+            raise ValueError("Username already exists")
+        
+        registry_email = self.normalize_email(registry_email)
+        user = self.model(room_id=room_id, username=username, registry_email=registry_email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
+class SuperUserManager(BaseUserManager):
     def create_superuser(self, username, password=None, **extra_fields):
-        extra_fields.setdefault('is_superuser', False)
-        extra_fields.setdefault('is_staff', True)
+        if not username:
+            raise ValueError("The Username field must be set")
+        
+        user = self.model(username=username, **extra_fields)
+        user.set_password(password)
+        user.is_staff = True
+        user.is_superuser = True
+        user.save(using=self._db)
+        return user
 
-        if extra_fields.get('is_staff') is not True:
-            raise ValueError("Superuser must have is_staff=True.")
-        if extra_fields.get('is_superuser') is not True:
-            raise ValueError("Superuser must have is_superuser=True.")
+class SuperUser(AbstractBaseUser, PermissionsMixin):  # Add PermissionsMixin here
+    username = models.CharField(max_length=100, unique=True)
+    email = models.EmailField(unique=True, blank=True, null=True)
+    is_staff = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True)
+    # The is_superuser field is inherited from PermissionsMixin
 
-        return self.create_user(username, password, **extra_fields)
+    objects = SuperUserManager()
 
-class RoomUser(AbstractBaseUser, PermissionsMixin):
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']
+
+    def __str__(self):
+        return self.username
+# RoomUser Model
+class RoomUser(AbstractBaseUser):
     room_id = models.CharField(max_length=100, unique=True)
     username = models.CharField(max_length=100, unique=True)
-    is_approved = models.BooleanField(default=False)
     registry_email = models.EmailField(default="example@gmail.com")
-    phone_number = models.CharField(max_length=10, default="0123456789")
-    is_staff = models.BooleanField(default=False)
+    phone_number = models.CharField(max_length=10, unique=True)
+    is_approved = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+
+    objects = RoomUserManager()
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['room_id', 'registry_email', 'phone_number']
 
-    objects = RoomUserManager()
-
     def __str__(self):
         return self.username
+
+
 
 # Store payment details
 class Payment(models.Model):

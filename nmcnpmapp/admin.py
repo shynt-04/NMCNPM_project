@@ -1,7 +1,7 @@
 # admin.py
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Payment, PaymentStatus, FamilyMember, Article, RoomUser
+from .models import Payment, PaymentStatus, FamilyMember, Article, RoomUser, SuperUser
 
 # Register the Article model
 class ArticleAdmin(admin.ModelAdmin):
@@ -13,34 +13,15 @@ class ArticleAdmin(admin.ModelAdmin):
 admin.site.register(Article, ArticleAdmin)
 
 # Customized admin for RoomUser
-class RoomUserAdmin(UserAdmin):  # Inherit from UserAdmin for User-specific functionality
-    model = RoomUser
-    # Fields to display in the list view
-    list_display = ('room_id', 'username', 'is_approved', 'registry_email', 'phone_number')
-    # Fields to filter by in the right sidebar
-    list_filter = ('is_approved',)
-    # Fields that are searchable
-    search_fields = ('room_id', 'username', 'phone_number')
-    # Ordering for the list view
-    ordering = ('room_id',)
-    # Read-only fields (optional, for fields you don’t want users to edit directly)
-    readonly_fields = ('room_id',)
+@admin.register(RoomUser)
+class RoomUserAdmin(admin.ModelAdmin):
+    list_display = ['username', 'room_id', 'registry_email','phone_number','is_approved']
+    search_fields = ['username', 'room_id', 'registry_email','phone_number','is_approved']
 
-    # Customize the layout of the add/edit form with fieldsets
-    fieldsets = (
-        (None, {
-            'fields': ('room_id', 'username', 'is_approved', 'password')
-        }),
-        ('Contact Information', {
-            'fields': ('registry_email', 'phone_number')
-        }),
-        ('Permissions', {
-            'fields': ('is_staff', 'is_superuser', 'user_permissions', 'groups')
-        }),
-    )
-
-# Register RoomUser with the custom admin class
-admin.site.register(RoomUser, RoomUserAdmin)
+@admin.register(SuperUser)
+class SuperUserAdmin(admin.ModelAdmin):
+    list_display = ['username', 'email','password']
+    search_fields = ['username', 'email']
 
 # Register other models
 admin.site.register(Payment)

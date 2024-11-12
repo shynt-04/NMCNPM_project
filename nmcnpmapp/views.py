@@ -10,15 +10,20 @@ from django.contrib.auth.models import Group
 
 def login_view(request):
     if request.method == 'POST':
-        print(request.POST)
         form = CustomAuthenticationForm(data=request.POST)
         if form.is_valid():
+            # Get the authenticated user
             user = form.get_user()
-            if user.is_approved:
+            if user:
                 login(request, user)
+                print(login(request, user))
+                print(user.username)
                 return redirect('homepage')
-            else:
+        else:
+            # Check if the error was due to unapproved status
+            if "awaiting approval" in str(form.errors):
                 return render(request, 'app/wait.html')
+
     else:
         form = CustomAuthenticationForm()
     return render(request, 'registration/login.html', {'form': form})

@@ -9,14 +9,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-AUTH_USER_MODEL = 'nmcnpmapp.RoomUser'
+AUTH_USER_MODEL = 'nmcnpmapp.SuperUser'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
 
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-)
 
 LOGGING = {
     'version': 1,
@@ -52,7 +49,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'nmcnpmapp',
+    #...
+    "admin_interface",
+    "colorfield",
+    #...
+    #...
 ]
+AUTHENTICATION_BACKENDS = [
+    'nmcnpmapp.backends.MultiUserModelBackend',  # Custom backend for RoomUser and SuperUser
+    'django.contrib.auth.backends.ModelBackend',  # Default backend
+]
+
+X_FRAME_OPTIONS = "SAMEORIGIN"              # allows you to use modals insated of popups
+SILENCED_SYSTEM_CHECKS = ["security.W019"]  # ignores redundant warning messages
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -83,8 +92,12 @@ TEMPLATES = [
         },
     },
 ]
-
+TEMPLATE_LOADERS = ['apptemplates.Loader',]
 WSGI_APPLICATION = 'myproject.wsgi.application'
+# Ensure these settings are in your settings.py
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Use database-backed sessions
+SESSION_COOKIE_SECURE = False  # Set to True in production with HTTPS
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Keeps the session active after closing the browser
 
 DATABASES = {
     'default': {

@@ -1,5 +1,252 @@
 Watching for file changes with StatReloader
-Watching for file changes with StatReloader
 Not Found: /favicon.ico
+Internal Server Error: /admin/login/
+Traceback (most recent call last):
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/contrib/admin/sites.py", line 444, in login
+    return LoginView.as_view(**defaults)(request)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/views/decorators/debug.py", line 143, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/contrib/auth/views.py", line 89, in dispatch
+    return super().dispatch(request, *args, **kwargs)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/views/generic/edit.py", line 150, in post
+    if form.is_valid():
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/forms/forms.py", line 197, in is_valid
+    return self.is_bound and not self.errors
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/forms/forms.py", line 192, in errors
+    self.full_clean()
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/forms/forms.py", line 326, in full_clean
+    self._clean_form()
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/forms/forms.py", line 342, in _clean_form
+    cleaned_data = self.clean()
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/contrib/auth/forms.py", line 362, in clean
+    self.confirm_login_allowed(self.user_cache)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/contrib/admin/forms.py", line 22, in confirm_login_allowed
+    if not user.is_staff:
+AttributeError: 'SuperUser' object has no attribute 'is_staff'
 /mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Internal Server Error: /admin/
+Traceback (most recent call last):
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/contrib/admin/sites.py", line 260, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/contrib/admin/sites.py", line 241, in inner
+    return view(request, *args, **kwargs)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/contrib/admin/sites.py", line 557, in index
+    app_list = self.get_app_list(request)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/contrib/admin/sites.py", line 541, in get_app_list
+    app_dict = self._build_app_dict(request, app_label)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/contrib/admin/sites.py", line 483, in _build_app_dict
+    has_module_perms = model_admin.has_module_permission(request)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/contrib/admin/options.py", line 640, in has_module_permission
+    return request.user.has_module_perms(self.opts.app_label)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/utils/functional.py", line 253, in inner
+    return func(_wrapped, *args)
+AttributeError: 'SuperUser' object has no attribute 'has_module_perms'
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/models.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/models.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Using selector: EpollSelector
+Using selector: EpollSelector
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/admin.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/admin.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/models.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/myproject/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/admin.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/admin.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/admin.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py", line 15, in login_view
+    user = form.clean()
+  File "/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py", line 28, in clean
+    cleaned_data = super().clean()
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/forms/forms.py", line 363, in clean
+    return self.cleaned_data
+AttributeError: 'CustomAuthenticationForm' object has no attribute 'cleaned_data'
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py", line 15, in login_view
+    user = form.auth()
+  File "/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py", line 28, in auth
+    cleaned_data = super().clean()
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/forms/forms.py", line 363, in clean
+    return self.cleaned_data
+AttributeError: 'CustomAuthenticationForm' object has no attribute 'cleaned_data'
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/myproject/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/myproject/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/models.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/models.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/junchannn/.local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py", line 16, in login_view
+    user = form.get_user()
+  File "/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py", line 49, in get_user
+    return self.cleaned_data.get('user')
+AttributeError: 'str' object has no attribute 'get'
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/myproject/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/myproject/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/myproject/settings.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/views.py changed, reloading.
+Watching for file changes with StatReloader
+/mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/admin.py changed, reloading.
 Watching for file changes with StatReloader
