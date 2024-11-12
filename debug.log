@@ -575,3 +575,5 @@ Traceback (most recent call last):
 django.template.exceptions.TemplateDoesNotExist: app/changepassword.html
 Not Found: /wait.html
 Not Found: /templates/app/wait.html
+Not Found: /forgot-password
+Not Found: /forgot-password
