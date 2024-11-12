@@ -1,52 +1,87 @@
-/* General Header Styling */
-.homepage-header {
-    background-image: url("/nmcnpmapp/static/img/building.jpg");
-    background-size: cover;
-    background-position: center;
-    height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    color: white;
-    overflow: hidden;
-}
-
-/* Gradient Overlay */
-.header-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+body, html {
     height: 100%;
-    background: linear-gradient(135deg, rgba(0, 0, 50, 0.7), rgba(0, 100, 255, 0.5));
-    z-index: 1;
-    opacity: 0.9;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Centered Content */
-.header-content {
-    position: relative;
-    z-index: 2;
+.content {
+    flex: 1;
+}
+
+.footer {
+    background-color: #f8f9fa;
+    padding: 10px 0;
+}
+
+/* General Header Styling with Centered Text */
+.homepage-header {
+    background: url("/static/img/building.png") no-repeat center center; /* Set the background image */
+    background-size: cover; /* Ensure the background covers the entire header without stretching */
+    background-position: center center; /* Center the image */
+    color: white;
+    display: flex;
+    justify-content: center; /* Center content horizontally */
     text-align: center;
-    animation: fadeIn 2s ease-in-out;
+    height: 40vh; /* Height of the header */
+    position: relative;
+    padding: 0 20px;
 }
 
 /* Title Styling */
-.header-title {
-    font-size: 3rem;
+.homepage-header__title {
+    font-size: 4rem; /* Increased font size for the title */
     font-weight: bold;
     margin: 0;
+    color: #fdfdfd; /* Soft white */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Subtle shadow for contrast */
 }
 
-.header-subtitle {
-    font-size: 1.5rem;
-    margin-top: 10px;
-    font-weight: 300;
+/* Subtitle Styling */
+.homepage-header__intro {
+    font-size: 2.5rem; /* Increased font size for the subtitle */
+    font-weight: 500;
+    margin-top: 5px;
+    color: #dddacc; /* Subtle golden tone */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Softer shadow */
 }
 
-/* Animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+.custom-div3 {
+    position: relative;
+    z-index: 10;
+}
+
+.sub-user {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    list-style: none;
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    border-radius: 5px; /* Rounded corners */
+    z-index: 15;
+    display: none;
+    min-width: 150px; /* Set a minimum width */
+}
+
+.sub-user li {
+    padding: 5px 10px;
+    font-size: 1rem;
+}
+
+.sub-user li a {
+    color: #333;
+    text-decoration: none;
+}
+
+.sub-user li a:hover {
+    color: #007bff; /* Highlight color on hover */
+    text-decoration: underline;
+}
+
+.custom-div3:hover .sub-user {
+    display: block;
 }
