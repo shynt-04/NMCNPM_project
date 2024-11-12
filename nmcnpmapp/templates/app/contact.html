@@ -10,19 +10,20 @@
     <link rel="stylesheet" href="/static/css/newstyles.css">
     <link rel="stylesheet" href="/static/css/responsive-tablet.css">
     <link rel="stylesheet" href="/static/css/responsive-mobile.css">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6divZGJwFDMVNA/GpGFF93hXpG5KkN"
-            crossorigin="anonymous"></script>
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6divZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"></script>
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-            crossorigin="anonymous"></script>
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
     <style>
         /* CSS for a sticky footer */
         body, html {
@@ -72,6 +73,17 @@
             margin-top: 5px;
             color: #dddacc; /* Subtle golden tone */
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Softer shadow */
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
     </style>
@@ -128,13 +140,65 @@
     </div>
 </header>
 
-<!-- Contact Form Content -->
-<div class="container content mt-4">
-    <div class="contact-form">
-        <h2>Liên hệ với chúng tôi</h2>
-        <!-- Add form content here -->
-    </div>
-</div>
+<main class="special-main">
+    <section>
+        <h3 class="hello">Liên hệ quản lý chung cư</h3>
+    </section>
+    <section>
+        <div class="div-contact fade-in">
+            <div class="div-image">
+                <img src="{% static 'img/example.jpg' %}" alt="dangphuc" class="avatar">
+            </div>
+            <div class="div-info">
+                <h3 style="margin-bottom: 20px;">Quản lý tầng A - B</h3>
+                <address class="address">
+                    Ông: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nguyễn Đăng Phúc
+                    <br />
+                    <img src="{% static 'icon/email.svg' %}" alt="email" style="display: inline-block; margin-bottom: 3px;" />
+                    Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="mailto:phucnguyendang@gmail.com">phucnguyendang@gmail.com</a><br />
+                    <img src="{% static 'icon/tablet.svg' %}" alt="phone" style="display: inline-block; margin-bottom: 3px;" />
+                    Điện thoại: &nbsp; <a href="tel:+84915487872">+84989999999</a><br />
+                </address>
+            </div>
+        </div>
+        <div class="div-contact fade-in">
+            <div class="div-image">
+                <img src="{% static 'img/example.jpg' %}" alt="ngockiet" class="avatar">
+            </div>
+            <div class="div-info">
+                <h3 style="margin-bottom: 20px;">Quản lý tầng B - C </h3>
+                <address class="address">
+                    Ông: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nguyễn Ngọc Kiệt
+                    <br />
+                    <img src="{% static 'icon/email.svg' %}" alt="email" style="display: inline-block; margin-bottom: 3px;" />
+                    Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="mailto:kietnguyenngoc@gmail.com">kietnguyenngoc@gmail.com</a><br />
+                    <img src="{% static 'icon/tablet.svg' %}" alt="phone" style="display: inline-block; margin-bottom: 3px;" />
+                    Điện thoại: &nbsp; <a href="tel:+84999999999">+84999999999</a><br />
+                </address>
+            </div>
+        </div>
+        <div class="div-contact fade-in">
+            <div class="div-image">
+                <img src="{% static 'img/example.jpg' %}" alt="html" class="avatar">
+            </div>
+            <div class="div-info">
+                <h3 style="margin-bottom: 20px;">Kế toán</h3>
+                <address class="address">
+                    Ông: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Lê Danh Vinh
+                    <br />
+                    <img src="{% static 'icon/email.svg' %}" alt="email" style="display: inline-block; margin-bottom: 3px;" />
+                    Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="mailto:danhvinhle@gmail.com">danhvinhle@gmail.com</a><br />
+                    <img src="{% static 'icon/tablet.svg' %}" alt="phone" style="display: inline-block; margin-bottom: 3px;" />
+                    Điện thoại: &nbsp; <a href="tel:+84399999999">+84399999999</a><br />
+                </address>
+            </div>
+        </div>
+    </section>
+</main>
 
 <!-- Footer -->
 <footer class="footer mt-auto text-center">
@@ -144,7 +208,28 @@
 </footer>
 
 <!-- Scripts -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const elements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        });
+
+        elements.forEach(element => observer.observe(element));
+    });
+</script>
 </body>
 </html>
