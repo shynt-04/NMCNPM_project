@@ -11,7 +11,7 @@ class RoomUserManager(BaseUserManager):
         return user
 
     def create_superuser(self, username, password=None, **extra_fields):
-        extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_superuser', False)
         extra_fields.setdefault('is_staff', True)
 
         if extra_fields.get('is_staff') is not True:
@@ -30,7 +30,7 @@ class RoomUser(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['registry_email', 'phone_number']
+    REQUIRED_FIELDS = ['room_id', 'registry_email', 'phone_number']
 
     objects = RoomUserManager()
 
