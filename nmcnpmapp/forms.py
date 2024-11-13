@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import RoomUser
+from django.contrib.auth import authenticate
 
 # Custom form for creating RoomUser accounts
 class CustomUserCreationForm(UserCreationForm):
@@ -19,8 +20,31 @@ class CustomUserCreationForm(UserCreationForm):
         self.fields['phone_number'].widget.attrs.update({'placeholder': 'Phone number'})
 
 # Custom form for authenticating RoomUser accounts
-class CustomAuthenticationForm(AuthenticationForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Enter username'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Enter password'}))
-    
-    # You don’t need a Meta class for AuthenticationForm
+class CustomAuthenticationForm(forms.Form):
+    username = forms.CharField(max_length=100)
+    password = forms.CharField(widget=forms.PasswordInput)
+    user = None  # Store the authenticated user instance if successful
+
+    def clean(self):
+        # Retrieve the cleaned data
+        cleaned_data = super().clean()
+        username = cleaned_data.get("username")
+        password = cleaned_data.get("password")
+        
+        # Try to authenticate the user using Django's authenticate function
+        user = authenticate(username=username, password=password)
+        
+        if user is None:
+            # User could not be authenticated
+            raise forms.ValidationError("Invalid username or password.")
+        
+        if hasattr(user, 'is_approved') and not user.is_approved:
+            # If the user is a RoomUser and not approved
+            raise forms.ValidationError("Your account is awaiting approval.")
+        
+        # Store the authenticated user in the form
+        self.user = user
+        return cleaned_data
+
+    def get_user(self):
+        return self.user
