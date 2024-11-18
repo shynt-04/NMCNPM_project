@@ -38,10 +38,6 @@ class CustomAuthenticationForm(forms.Form):
             # User could not be authenticated
             raise forms.ValidationError("Invalid username or password.")
         
-        if hasattr(user, 'is_approved') and not user.is_approved:
-            # If the user is a RoomUser and not approved
-            raise forms.ValidationError("Your account is awaiting approval.")
-        
         # Store the authenticated user in the form
         self.user = user
         return cleaned_data
