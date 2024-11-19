@@ -1,5 +1,5 @@
 from django.urls import path
-from nmcnpmapp import views
+from nmcnpmapp import views, views_admin
 from nmcnpmapp.views import SignUpView, about, contact
 from django.contrib import admin
 from django.views.generic.base import TemplateView
@@ -16,7 +16,7 @@ urlpatterns = [
     path("signup/", SignUpView.as_view(), name="signup"),
     path("contact/", views.contact, name="contact"),
     path("about/", views.about, name="about"),
-    path("service/", views.service, name="service"),
+    path("service/", views.view_payment, name="service"),
     path("wait/", views.wait, name="wait"),
     path("notification/", views.notification, name="notification"),
     # path("personal/", views.personal, name="personal"),
@@ -25,6 +25,8 @@ urlpatterns = [
     path('change-password-done/', password_change_done, name='password_change_done'),
     path("add_member/", views.add_member, name="add_member"),
     path('list_member/', views.list_member, name='list_member'),
+    path('account-management/', views_admin.account_management, name='account_management'),
+
 ]
 
 if settings.DEBUG:

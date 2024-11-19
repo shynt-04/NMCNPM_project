@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import logout
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
-from .models import FamilyMember, PaymentStatus, Payment, Article, RoomUser
+from .models import FamilyMember,Charge, Payment, Article, RoomUser
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views import generic
@@ -63,7 +63,6 @@ def list_member(request):
     # Pass family_members directly to the template
     return render(request, 'app/member.html', {'family_members': family_members})
 
-
 @login_required
 def changepassword(request):
     user = RoomUser.objects.get(username=request.user.username)
@@ -80,18 +79,17 @@ def password_change_done(request):
     return render(request, 'app/homepage.html')
 
 @login_required
-def service(request):
+def view_payment(request):
     user = RoomUser.objects.get(username=request.user.username)
-    payments = PaymentStatus.objects.filter(room_id=user.room_id)
-    payment_infos = Payment.objects.filter(statuses__in=payments)
+    payments = Payment.objects.filter(room_id=user.room_id)
     payment_info_list = [
         {
             'khoan_thu': payment.payment,
-            'phi': payment_info.amount,
+            'phi': payment.amount,
             'da_dong': payment.status,
-            'han_nop': payment_info.date
+            'han_nop': payment.date
         }
-        for payment, payment_info in zip(payments, payment_infos)
+        for payment in payments
     ]
     return render(request, 'app/service.html', {'payment_info_list': payment_info_list})
 

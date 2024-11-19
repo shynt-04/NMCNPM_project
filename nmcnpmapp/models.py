@@ -48,9 +48,12 @@ class SuperUser(AbstractBaseUser, PermissionsMixin):  # Add PermissionsMixin her
 
     def __str__(self):
         return self.username
+class apartment(models.Model):
+    room_id = models.IntegerField(primary_key=True)
+    area = models.IntegerField(default =0)
 # RoomUser Model
 class RoomUser(AbstractBaseUser):
-    room_id = models.CharField(max_length=100, unique=True)
+    room_id = models.ForeignKey(apartment, on_delete=models.CASCADE,related_name="user")
     username = models.CharField(max_length=100, unique=True)
     registry_email = models.EmailField(default="example@gmail.com")
     phone_number = models.CharField(max_length=10, unique=True)
@@ -65,30 +68,32 @@ class RoomUser(AbstractBaseUser):
     def __str__(self):
         return self.username
 
-
-
+class Vehicle(models.Model):
+    license_plate = models.CharField(max_length=30)
+    type_vehicle = models.IntegerField()
+    room_id = models.ForeignKey(apartment, on_delete=models.CASCADE, related_name="vehicles")
+    
+class Charge(models.Model):
+    charge_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=255)
+    create_at = models.DateField(auto_now_add=True)
+    create_by = models.ForeignKey(SuperUser,on_delete = models.CASCADE, related_name="charges")
+    deadline = models.DateField()
+    target_room = models.ManyToManyField(apartment, related_name="charges")  
+    
 # Store payment details
 class Payment(models.Model):
-    payment = models.CharField(max_length=255)
+    payment_id = models.AutoField(primary_key=True)
+    charge_id = models.ForeignKey(Charge, on_delete=models.CASCADE, related_name="payments")
+    room_id = models.ForeignKey(apartment, on_delete=models.CASCADE, related_name="payments")
     amount = models.PositiveIntegerField(default=0)
     date = models.DateField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.payment} - {self.amount}"
-
-# Table to store payment status of each room
-class PaymentStatus(models.Model):
-    room_id = models.ForeignKey(RoomUser, on_delete=models.CASCADE, to_field='room_id', related_name="payment_statuses")
-    payment = models.ForeignKey(Payment, on_delete=models.CASCADE, related_name="statuses")
     status = models.BooleanField(default=False)
-
-    def __str__(self) -> str:
-        return f"{self.room_id.room_id} - {self.payment.payment} - {self.status}"
 
 # Store family members details
 class FamilyMember(models.Model):
     id = models.AutoField(primary_key=True)
-    room_id = models.ForeignKey(RoomUser, on_delete=models.CASCADE, to_field='room_id', related_name="family_members")
+    room_id = models.ForeignKey(apartment, on_delete=models.CASCADE, related_name="family_members")
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     age = models.PositiveIntegerField(default=13)

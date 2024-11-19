@@ -1,6 +1,6 @@
 {
-    "name": "vepiot/quan-ly-thu-phi-dong-gop",
-    "description": "quan ly thu chi dong gop phuong La Khe",
+    "name": "vepiot/quan-ly-chung-cu",
+    "description": "quan ly thu chung cu BlueMoon",
     "require": {
         "django": "^4.2.8"
     }
