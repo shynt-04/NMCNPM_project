@@ -7,35 +7,44 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.models import Group
+from django.contrib import messages
 
 def login_view(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(data=request.POST)
         if form.is_valid():
-            # Get the authenticated user
             user = form.get_user()
             if user:
-                login(request, user)
-                print(login(request, user))
-                print(user.username)
-                return redirect('homepage')
+                # Kiểm tra nếu tài khoản đã được phê duyệt
+                if getattr(user, 'is_approved', False):  # `is_approved` là trường trạng thái trong model
+                    login(request, user)
+                    messages.success(request, "Đăng nhập thành công!")
+                    return redirect('homepage')
+                else:
+                    # Hiển thị thông báo và render đến `wait.html` nếu chưa được phê duyệt
+                    messages.warning(request, "Tài khoản của bạn đang chờ phê duyệt. Vui lòng đợi.")
+                    return render(request, 'app/wait.html', {'username': user.username})
         else:
-            # Check if the error was due to unapproved status
-            if "awaiting approval" in str(form.errors):
-                return render(request, 'app/wait.html')
-
+            # Hiển thị thông báo lỗi nếu thông tin đăng nhập không chính xác
+            messages.error(request, "Tên đăng nhập hoặc mật khẩu không chính xác.")
+    
     else:
         form = CustomAuthenticationForm()
     return render(request, 'registration/login.html', {'form': form})
 
 def logout_view(request):
     logout(request)
+    messages.info(request, "Bạn đã đăng xuất thành công.")  # Thông báo
     return redirect('login')
 
 class SignUpView(generic.CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
+
+    def form_valid(self, form):
+        messages.success(self.request, "Tạo tài khoản thành công. Vui lòng đăng nhập.")  # Thông báo
+        return super().form_valid(form)
 
 def homepage(request):
     articles = Article.objects.all()
@@ -96,26 +105,28 @@ def view_payment(request):
 @login_required
 def add_member(request):
     if request.method == 'POST':
-        # Fetch the RoomUser instance associated with the current user
         room_user = get_object_or_404(RoomUser, username=request.user.username)
-
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
-        age = request.POST.get('age')
+        dob = request.POST.get('date_of_birth')
         email = request.POST.get('email')
         phone_number = request.POST.get('phone_number')
 
-        # Create the FamilyMember and assign the RoomUser instance
-        FamilyMember.objects.create(
-            room_id=room_user,
-            first_name=first_name,
-            last_name=last_name,
-            age=age,
-            email=email,
-            phone_number=phone_number
-        )
+        # Kiểm tra dữ liệu hợp lệ
+        if first_name and last_name and dob and email and phone_number:
+            FamilyMember.objects.create(
+                room_id=room_user,
+                first_name=first_name,
+                last_name=last_name,
+                date_of_birth=dob,
+                email=email,
+                phone_number=phone_number
+            )
+            messages.success(request, "Thêm thành viên thành công.")
+        else:
+            messages.error(request, "Vui lòng nhập đầy đủ thông tin hợp lệ.")
         return redirect('service')
-    
+
     return render(request, 'app/add_member.html')
 
 @login_required
@@ -131,6 +142,6 @@ def wait(request):
 @login_required
 def service_view(request):
     user = request.user
-    family_group = Group.objects.get(name='Tên group của bạn') 
-    is_member = family_group.user_set.filter(id=user.id).exists()
-    return render(request, 'service.html', {'is_member': is_member})
+    family_group = Group.objects.filter(user=user).first()  # Lấy group đầu tiên mà user thuộc
+    is_member = family_group is not None
+    return render(request, 'app/service.html', {'is_member': is_member})

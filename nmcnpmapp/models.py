@@ -1,3 +1,4 @@
+#models.py
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 from django.db import models
@@ -74,19 +75,28 @@ class Vehicle(models.Model):
     room_id = models.ForeignKey(apartment, on_delete=models.CASCADE, related_name="vehicles")
     
 class Charge(models.Model):
+    # trường thứ nhất trong category_choices sẽ là giá trị lưu trong database, 
+    # trường thứ hai sẽ là giá trị hiển thị trên giao diện
+    CATEGORY_CHOICES = [
+    ("Tiền điện", "Tiền điện"),
+    ("Tiền nước", "Tiền nước"),
+    ("Phí dịch vụ", "Phí dịch vụ"),
+    ("Phí quản lý", "Phí quản lý"),
+    ("Khác", "Khác"),
+    ]
     charge_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     create_at = models.DateField(auto_now_add=True)
     create_by = models.ForeignKey(SuperUser,on_delete = models.CASCADE, related_name="charges")
     deadline = models.DateField()
     target_room = models.ManyToManyField(apartment, related_name="charges")  
-    
+    category = models.CharField(max_length=50, choices=CATEGORY_CHOICES, default="Khác")
 # Store payment details
 class Payment(models.Model):
     payment_id = models.AutoField(primary_key=True)
     charge_id = models.ForeignKey(Charge, on_delete=models.CASCADE, related_name="payments")
     room_id = models.ForeignKey(apartment, on_delete=models.CASCADE, related_name="payments")
-    amount = models.PositiveIntegerField(default=0)
+    amount = models.PositiveIntegerField()
     date = models.DateField(auto_now_add=True)
     status = models.BooleanField(default=False)
 
@@ -96,7 +106,7 @@ class FamilyMember(models.Model):
     room_id = models.ForeignKey(apartment, on_delete=models.CASCADE, related_name="family_members")
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    age = models.PositiveIntegerField(default=13)
+    date_of_birth = models.DateField(null=True, blank=True)
     email = models.EmailField(default="lol@gmail.com")
     phone_number = models.CharField(max_length=10, default="0123456789")
 

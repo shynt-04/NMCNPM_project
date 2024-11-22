@@ -7,10 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng ký - Hệ thống Quản lý Thu phí</title>
 
+    <link rel="stylesheet" href="/static/css/msg.css">
     <link rel="stylesheet" href="/static/css/newstyles.css">
     <link rel="stylesheet" href="/static/css/responsive-tablet.css">
     <link rel="stylesheet" href="/static/css/responsive-mobile.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
 </head>
 
 <body>
@@ -93,6 +97,26 @@
             </div>
         </div>
     </section>
+
+    <!-- Toast messages -->
+    {% if messages %}
+    <div id="toast-container">
+        {% for message in messages %}
+            <div class="toast {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const toasts = document.querySelectorAll('.toast');
+            toasts.forEach(toast => {
+                setTimeout(() => {
+                    toast.style.display = 'none';
+                }, 3500); // 3.5s để biến mất
+            });
+        });
+    </script>
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

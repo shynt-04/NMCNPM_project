@@ -1,3 +1,4 @@
+#forms.py
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import RoomUser,Charge,Payment,apartment
@@ -40,10 +41,6 @@ class CustomAuthenticationForm(forms.Form):
             # User could not be authenticated
             raise forms.ValidationError("Invalid username or password.")
         
-        if hasattr(user, 'is_approved') and not user.is_approved:
-            # If the user is a RoomUser and not approved
-            raise forms.ValidationError("Your account is awaiting approval.")
-        
         # Store the authenticated user in the form
         self.user = user
         return cleaned_data
@@ -54,18 +51,51 @@ class CustomAuthenticationForm(forms.Form):
 class ChargeForm(forms.ModelForm):
     excel_file = forms.FileField(
         required=False, 
-        label="Tải lên file Excel"
+        label="Tải lên file Excel",
+        help_text="Chỉ áp dụng cho Tiền điện/Tiền nước."
     )
-
+    unit_price = forms.DecimalField(
+        required=False, 
+        max_digits=10, 
+        decimal_places=3, 
+        label="Đơn giá (VNĐ/m2)",
+        help_text="Chỉ áp dụng cho Phí dịch vụ/Phí quản lý."
+    )
+    CATEGORY_CHOICES = [
+    ("Tiền điện", "Tiền điện"),
+    ("Tiền nước", "Tiền nước"),
+    ("Phí dịch vụ", "Phí dịch vụ"),
+    ("Phí quản lý", "Phí quản lý"),
+    ("Khác", "Khác"),
+    ]
+    category = forms.ChoiceField(choices=CATEGORY_CHOICES, label="Loại khoản thu")
+    
     class Meta:
         model = Charge
-        fields = ['name', 'create_by', 'deadline', 'target_room']
+        fields = ['category','name', 'create_by', 'deadline']
 
-    def clean_excel_file(self):
-        file = self.cleaned_data.get('excel_file')
-        if file and not file.name.endswith(('.xls', '.xlsx')):
-            raise ValidationError("File phải có định dạng .xls hoặc .xlsx")
-        return file
+    def clean(self):
+        cleaned_data = super().clean()
+        category = cleaned_data.get("category")
+        excel_file = cleaned_data.get("excel_file")
+        unit_price = cleaned_data.get("unit_price")
+
+        # Kiểm tra điều kiện theo loại khoản thu
+        if category in ["Tiền điện", "Tiền nước"]:
+            if not excel_file:
+                raise forms.ValidationError("Vui lòng tải lên file Excel cho Tiền điện/Tiền nước.")
+            # target_room sẽ được xử lý từ file Excel
+            cleaned_data["target_room"] = None  
+        elif category in ["Phí dịch vụ", "Phí quản lý"]:
+            if not unit_price:
+                raise forms.ValidationError("Vui lòng nhập đơn giá cho Phí dịch vụ/Phí quản lý.")
+            # Không cho phép tải file Excel
+            if excel_file:
+                raise forms.ValidationError("Không được tải file Excel cho Phí dịch vụ/Phí quản lý.")
+        elif category == "Khác":
+            # Không yêu cầu file Excel
+            cleaned_data["excel_file"] = None
+        return cleaned_data
 
     def process_excel_file(self, excel_file, charge_instance):
         """
@@ -80,7 +110,7 @@ class ChargeForm(forms.ModelForm):
                 raise ValidationError("File Excel cần có các cột: 'Số nhà', 'Số tiền'")
 
             # Tạo các bản ghi Payment
-            payments_created = []
+            target_residents = []
             for _, row in df.iterrows():
                 room_id = row['Số nhà']
                 amount = row['Số tiền']
@@ -96,7 +126,22 @@ class ChargeForm(forms.ModelForm):
                     room_id=room,
                     amount=amount,
                 )
-                payments_created.append(payment)
-            return payments_created
+                target_residents.append(room)
+            return target_residents
         except Exception as e:
             raise ValidationError(f"Lỗi xử lý file Excel: {e}")
+    def calculate_service_fee(self, unit_price, charge_instance):
+        """
+        Tính toán amount = đơn giá * diện tích cho Phí dịch vụ/Phí quản lý.
+        """
+        payments = []
+        rooms = apartment.objects.all()
+        for room in rooms:
+            amount = unit_price * room.area
+            payments.append(Payment(
+                charge_id=charge_instance,
+                room_id=room,
+                amount=amount
+            ))
+        Payment.objects.bulk_create(payments)
+        return payments
