@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="/static/css/responsive-mobile.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 </head>
@@ -61,33 +62,77 @@
                                             <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
                                             <span class="h1 fw-bold mb-0">Đăng ký tài khoản</span>
                                         </div>
+                                    
+                                        <!-- Email -->
                                         <div class="form-group" style="margin-top: 20px;">
-                                        <input type="text" class="form-control" id="registry_email" name="registry_email" placeholder="Email của bạn">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                                </div>
+                                                <input type="email" class="form-control" id="registry_email" name="registry_email" placeholder="Email của bạn">
+                                            </div>
                                         </div>
+                                    
+                                        <!-- Username -->
                                         <div class="form-group" style="margin-top: 20px;">
-                                            <input type="text" class="form-control" id="username" name="username" placeholder="Username của bạn">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control" id="username" name="username" placeholder="Username của bạn">
+                                            </div>
                                         </div>
+                                    
+                                        <!-- Phone Number -->
                                         <div class="form-group" style="margin-top: 20px;">
-                                            <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Số điện thoại">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Số điện thoại">
+                                            </div>
                                         </div>
+                                    
+                                        <!-- Room ID -->
                                         <div class="form-group" style="margin-top: 20px;">
-                                            <input type="text" class="form-control" id="room_id" name="room_id" placeholder="Số phòng">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-home"></i></span>
+                                                </div>
+                                                <input type="text" class="form-control" id="room_id" name="room_id" placeholder="Số phòng">
+                                            </div>
                                         </div>
+                                    
+                                        <!-- Password -->
                                         <div class="form-group" style="margin-top: 20px;">
-                                            <input type="password" class="form-control" id="password1" name="password1" placeholder="Mật khẩu của bạn">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                                </div>
+                                                <input type="password" class="form-control" id="password1" name="password1" placeholder="Mật khẩu của bạn">
+                                            </div>
                                         </div>
+                                    
+                                        <!-- Confirm Password -->
                                         <div class="form-group" style="margin-top: 20px;">
-                                            <input type="password" class="form-control" id="password2" name="password2"
-                                              placeholder="Nhập lại mật khẩu của bạn">
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                                </div>
+                                                <input type="password" class="form-control" id="password2" name="password2" placeholder="Nhập lại mật khẩu của bạn">
+                                            </div>
                                         </div>
-
+                                    
+                                        <!-- Submit Button -->
                                         <div class="pt-1 mb-4">
                                             <button class="btn btn-dark btn-lg btn-block" type="submit">Đăng ký</button>
                                         </div>
-
-                                        <p class="mb-4 pb-lg-2" style="color: #393f81;">Đã có tài khoản? <a href="/login"
-                                                style="color: #393f81;">Đăng nhập</a></p>
-                                    </form>
+                                    
+                                        <!-- Redirect to Login -->
+                                        <p class="mb-4 pb-lg-2" style="color: #393f81;">
+                                            Đã có tài khoản? <a href="/login" style="color: #393f81;">Đăng nhập</a>
+                                        </p>
+                                    </form>                                    
 
                                 </div>
                             </div>

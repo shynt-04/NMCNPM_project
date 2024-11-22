@@ -751,6 +751,7 @@ E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\forms.py changed, reloading.
 Watching for file changes with StatReloader
 E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py changed, reloading.
 Watching for file changes with StatReloader
+<<<<<<< HEAD
 >>>>>>> 804cd5416c159f2e5f7cae9f9b3ae8a69660a3bd
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
@@ -1116,4 +1117,9 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+=======
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+>>>>>>> 30b3a9c3abf656a55c014543cc8bdd2f6f38c691
 Watching for file changes with StatReloader
