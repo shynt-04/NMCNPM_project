@@ -93,7 +93,7 @@ def view_payment(request):
     payments = Payment.objects.filter(room_id=user.room_id)
     payment_info_list = [
         {
-            'khoan_thu': payment.payment,
+            'khoan_thu': payment.charge_id.name,
             'phi': payment.amount,
             'da_dong': payment.status,
             'han_nop': payment.date
@@ -115,7 +115,7 @@ def add_member(request):
         # Kiểm tra dữ liệu hợp lệ
         if first_name and last_name and dob and email and phone_number:
             FamilyMember.objects.create(
-                room_id=room_user,
+                room_id=room_user.room_id,
                 first_name=first_name,
                 last_name=last_name,
                 date_of_birth=dob,

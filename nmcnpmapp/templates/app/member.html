@@ -84,7 +84,7 @@
             <thead>
                 <tr>
                     <th>Họ và Tên</th>
-                    <th>Tuổi</th>
+                    <th>Ngày sinh</th>
                     <th>Email</th>
                     <th>Số Điện Thoại</th>
                 </tr>
@@ -93,7 +93,7 @@
                 {% for member in family_members %}
                     <tr>
                         <td>{{ member.first_name }} {{ member.last_name }}</td>
-                        <td>{{ member.age }}</td>
+                        <td>{{ member.date_of_birth }}</td>
                         <td>{{ member.email }}</td>
                         <td>{{ member.phone_number }}</td>
                     </tr>
