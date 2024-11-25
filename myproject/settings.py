@@ -43,7 +43,7 @@ LOGOUT_REDIRECT_URL = "/"
 
 INSTALLED_APPS = [
     'unfold',
-    'django_admin_interface',
+    # 'django_admin_interface',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
