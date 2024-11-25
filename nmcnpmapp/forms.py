@@ -1,7 +1,7 @@
 #forms.py
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import RoomUser,Charge,Payment,apartment
+from .models import RoomUser,Charge,Payment,apartment,Vehicle
 from django.contrib.auth import authenticate
 import pandas as pd 
 from django.core.exceptions import ValidationError
@@ -66,6 +66,7 @@ class ChargeForm(forms.ModelForm):
     ("Tiền nước", "Tiền nước"),
     ("Phí dịch vụ", "Phí dịch vụ"),
     ("Phí quản lý", "Phí quản lý"),
+    ("Phí gửi xe", "Phí gửi xe"),
     ("Khác", "Khác"),
     ]
     category = forms.ChoiceField(choices=CATEGORY_CHOICES, label="Loại khoản thu")
@@ -82,18 +83,18 @@ class ChargeForm(forms.ModelForm):
 
         # Kiểm tra điều kiện theo loại khoản thu
         if category in ["Tiền điện", "Tiền nước"]:
+            cleaned_data["unit_price"] = None
             if not excel_file:
                 raise forms.ValidationError("Vui lòng tải lên file Excel cho Tiền điện/Tiền nước.")
-            # target_room sẽ được xử lý từ file Excel
-            cleaned_data["target_room"] = None  
         elif category in ["Phí dịch vụ", "Phí quản lý"]:
             if not unit_price:
-                raise forms.ValidationError("Vui lòng nhập đơn giá cho Phí dịch vụ/Phí quản lý.")
-            # Không cho phép tải file Excel
-            if excel_file:
-                raise forms.ValidationError("Không được tải file Excel cho Phí dịch vụ/Phí quản lý.")
+                raise forms.ValidationError("Vui lòng nhập đơn giá cho Phí dịch vụ/Phí quản lý.")            
+            cleaned_data["excel_file"] = None
+        elif category == "Phí gửi xe":
+            cleaned_data["unit_price"] = None
+            cleaned_data["excel_file"] = None
         elif category == "Khác":
-            # Không yêu cầu file Excel
+            cleaned_data["unit_price"] = None
             cleaned_data["excel_file"] = None
         return cleaned_data
 
@@ -145,3 +146,16 @@ class ChargeForm(forms.ModelForm):
             ))
         Payment.objects.bulk_create(payments)
         return payments
+    def calculate_parking_fee(self, charge_instance):
+
+        payments = []
+        vehicles = Vehicle.objects.all()
+        for vehicle in vehicles:
+            payments.append(Payment(
+                charge_id=charge_instance,
+                room_id=vehicle.room_id,
+                amount=50 if vehicle.type_vehicle == 0 else 100 if vehicle.type_vehicle == 1 else 300
+            ))
+        Payment.objects.bulk_create(payments)
+        
+        

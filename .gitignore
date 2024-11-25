@@ -1,0 +1,5 @@
+NOTE.ipynb
+__pycache__/
+*.pyc
+debug.log
+static/
