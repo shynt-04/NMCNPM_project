@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <style>
         /* CSS for a sticky footer */
@@ -79,11 +80,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active"><a class="nav-link" href="/">Trang chủ</a></li>
-                <li class="nav-item"><a class="nav-link" href="/service">Dịch vụ</a></li>
-                <li class="nav-item"><a class="nav-link" href="/about">Giới thiệu</a></li>
-                <li class="nav-item"><a class="nav-link" href="/contact">Liên hệ</a></li>                
-                <li class="nav-item"><a class="nav-link" href="/contact">Thông báo</a></li>                
+                <li class="nav-item active"><a class="nav-link" href="/"><i class="fas fa-home"></i> Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="/service"><i class="fas fa-cogs"></i> Dịch vụ</a></li>
+                <li class="nav-item"><a class="nav-link" href="/about"><i class="fas fa-info-circle"></i> Giới thiệu</a></li>
+                <li class="nav-item"><a class="nav-link" href="/contact"><i class="fas fa-envelope"></i> Liên hệ</a></li>
+                <li class="nav-item"><a class="nav-link" href="/notification"><i class="fas fa-bell"></i> Thông báo</a></li>
             </ul>
             {% if user.is_authenticated %}
             <div class="navbar-nav ml-auto">
