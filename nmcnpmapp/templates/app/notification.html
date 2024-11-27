@@ -1,5 +1,3 @@
-<!-- app/templates/app/notification.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,49 +9,59 @@
     {% load static %}
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="{% static 'css/home.css' %}?v=3">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}?v=8">
     <link rel="stylesheet" href="{% static 'css/newstyles.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive-tablet.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive-mobile.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-</head>
-<style>
-    /* Centering the notification content */
-    .notification-content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        width: 60%; /* Increase the width */
-        max-width: 600px; /* Limit maximum width */
-        margin: 20px auto; /* Center horizontally and add vertical spacing */
-        padding: 20px; /* Add padding inside the box */
-        border: 1px solid #ddd; /* Subtle border */
-        border-radius: 8px; /* Rounded corners */
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-        background-color: #fff; /* Background color */
-        text-align: center;
-    }
 
-    .notification-content h3 {
-        font-size: 1.5rem; /* Larger heading size */
-        color: #333;
-        margin-bottom: 10px;
-    }
+    <style>
+        .notification-content-scrollable {
+            max-height: 400px; /* Chiều cao tối đa */
+            overflow-y: auto;  /* Bật cuộn dọc */
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
 
-    .notification-content p {
-        color: #666;
-        font-size: 1rem;
-        margin: 5px 0;
-    }
+        .notification-content-scrollable .card {
+            margin-bottom: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-    .list-group-item {
-        text-align: left;
-    }
+        #notification-date {
+            margin-bottom: 20px;
+        }
 
-</style>
+        .notification-item {
+            margin-bottom: 20px;
+        }
+
+
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            color: #333;
+        }
+
+        .card-text {
+            color: #666;
+        }
+
+        .card-footer {
+            background-color: #fff;
+            border-top: none;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
@@ -71,7 +79,6 @@
                 <li class="nav-item"><a class="nav-link" href="/notification"><i class="fas fa-bell"></i> Thông báo</a></li>
             </ul>
             {% if user.is_authenticated %}
-            <!-- Dropdown for authenticated user -->
             <div class="navbar-nav ml-auto dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Xin chào, {{ user.username }}
@@ -104,22 +111,40 @@
         </div>
     </header>
 
-    <!-- Notification Content -->
-    <div class="container mt-4 notification-content">
-        <div class="list-group">
-            {% for article in articles %}
-            <a href="{{ article.link }}" class="list-group-item list-group-item-action">
-                <h5 class="mb-1">{{ article.title }}</h5>
-                <p class="mb-1">{{ article.content }}</p>
-                <small>Ngày đăng: {{ article.date }}</small>
-            </a>
-            {% empty %}
-                <p class="text-center" style="font-size: 1.5rem; font-weight: bold; margin-top: 50px;">
-                    Hiện chưa có thông báo nào.
-                </p>
-            {% endfor %}
+    <div class="container mt-4">
+        <div class="row align-items-start">
+            <!-- Lịch chọn ngày -->
+            <div class="col-md-3">
+                <label for="notification-date">Chọn ngày:</label>
+                <select id="notification-date" class="form-control">
+                    <option value="">Tất cả thông báo</option>
+                </select>
+            </div>
+    
+            <!-- Danh sách thông báo -->
+            <div class="col-md-9 notification-content">
+                <div class="notification-content-scrollable">
+                    {% if articles %}
+                        {% for article in articles|dictsortreversed:"date" %}
+                        <div class="card notification-item" data-date="{{ article.date|date:'Y-m-d' }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ article.title }}</h5>
+                                <p class="card-text">{{ article.content }}</p>
+                            </div>
+                            <div class="card-footer text-muted">
+                                Ngày đăng: {{ article.date }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <p class="text-center" style="font-size: 1.5rem; font-weight: bold; margin-top: 50px;">
+                            Hiện chưa có thông báo nào.
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
         </div>
-    </div>
+    </div>    
 
     <!-- Footer -->
     <footer class="footer mt-auto text-center">
@@ -127,6 +152,44 @@
             <span class="text-muted">© 2024.1 - Nhập môn Công nghệ Phần mềm - Nhóm 10.</span>
         </div>
     </footer>
+
+    <!-- Noti script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const notificationDateSelect = document.getElementById('notification-date');
+            const notifications = document.querySelectorAll('.notification-item');
+
+            const dates = [...new Set([...notifications].map(n => n.getAttribute('data-date')))];
+            dates.sort().forEach(date => {
+                const option = document.createElement('option');
+                option.value = date;
+                option.textContent = new Date(date).toLocaleDateString('vi-VN');
+                notificationDateSelect.appendChild(option);
+            });
+
+            notificationDateSelect.addEventListener('change', () => {
+                const selectedDate = notificationDateSelect.value;
+
+                if (selectedDate) {
+                    notifications.forEach(notification => {
+                        notification.style.display = notification.getAttribute('data-date') === selectedDate ? 'block' : 'none';
+                    });
+                } else {
+                    notifications.forEach(notification => {
+                        notification.style.display = 'block';
+                    });
+                }
+
+                const visibleNotifications = Array.from(notifications).filter(n => n.style.display === 'block');
+                if (visibleNotifications.length === 0) {
+                    document.getElementById('notification-scrollable').innerHTML = `
+                        <p class="text-center" style="font-size: 1.5rem; font-weight: bold; margin-top: 50px;">
+                            Không có thông báo nào trong ngày được chọn.
+                        </p>`;
+                }
+            });
+        });
+    </script>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

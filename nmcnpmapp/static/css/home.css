@@ -3,6 +3,7 @@ body, html {
     margin: 0;
     display: flex;
     flex-direction: column;
+    background: linear-gradient(to right, #ffffff, #d7e7f3);
 }
 
 .content {
@@ -16,15 +17,15 @@ body, html {
 
 /* General Header Styling with Centered Text */
 .homepage-header {
-    background: url('/static/img/building.png') no-repeat center center; /* Set the background image */
-    background-size: cover; /* Ensure the background covers the entire header without stretching */
-    background-position: center center; /* Center the image */
+    height: 300px; /* Đặt chiều cao cố định */
+    background: url('/static/img/building.png') no-repeat center center;
+    background-size: cover;
+    background-position: center center;
     color: white;
     display: flex;
-    align-items: center; /* Center content vertically */
-    justify-content: center; /* Center content horizontally */
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    height: 40vh; /* Height of the header */
     position: relative;
     padding: 0 20px;
 }
