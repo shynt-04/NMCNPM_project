@@ -17,7 +17,7 @@ body, html {
 
 /* General Header Styling with Centered Text */
 .homepage-header {
-    height: 300px; /* Đặt chiều cao cố định */
+    height: 200px; /* Đặt chiều cao cố định */
     background: url('/static/img/building.png') no-repeat center center;
     background-size: cover;
     background-position: center center;
@@ -28,6 +28,7 @@ body, html {
     text-align: center;
     position: relative;
     padding: 0 20px;
+    z-index: 1;
 }
 
 /* Title Styling */
