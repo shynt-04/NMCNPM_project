@@ -2,12 +2,15 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import logout
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
-from .models import FamilyMember,Charge, Payment, Article, RoomUser
+from .models import FamilyMember,Charge, Payment, Article, RoomUser, Notification
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.models import Group
 from django.contrib import messages
+from django.http import JsonResponse
+
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -56,8 +59,14 @@ def about(request):
 def contact(request):
     return render(request, 'app/contact.html')
 
+@login_required
 def notification(request):
-    return render(request, 'app/notification.html', {'articles': Article.objects.all()})
+    try:
+        user = RoomUser.objects.get(username=request.user.username)
+        notes = Notification.objects.filter(room_id=user.room_id)
+    except AttributeError:
+        notes = []
+    return render(request, 'app/notification.html', {'notes': notes})
 
 @login_required
 def list_member(request):

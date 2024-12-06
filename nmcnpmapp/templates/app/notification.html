@@ -127,19 +127,19 @@
             <!-- Danh sách thông báo -->
             <div class="col-md-9 notification-content">
                 <div class="notification-content-scrollable">
-                    {% if articles %}
-                        {% for article in articles|dictsortreversed:"date" %}
-                        <div class="card notification-item" data-date="{{ article.date|date:'Y-m-d' }}">
+                    {% if notes %}
+                        {% for note in notes|dictsortreversed:"date" %}
+                        <div class="card notification-item" data-date="{{ note.date|date:'Y-m-d' }}">
                             <div class="card-body">
-                                <h5 class="card-title">{{ article.title }}</h5>
+                                <h5 class="card-title">{{ note.title }}</h5>
                                 <p class="card-text" id="short-content-{{ forloop.counter }}">
-                                    {{ article.content|slice:":100" }}...
+                                    {{ note.content|slice:":100" }}...
                                 </p>
                                 <p class="card-text" id="full-content-{{ forloop.counter }}" style="display: none;">
-                                    {{ article.content }}
+                                    {{ note.content }}
                                 </p>
                                 <div class="card-footer text-muted">
-                                    Ngày đăng: {{ article.date }}
+                                    Ngày đăng: {{ note.date }}
                                 </div>
                                 <button class="btn btn-link" onclick="toggleContent('{{ forloop.counter }}')" id="toggle-btn-{{ forloop.counter }}">Xem thêm</button>
                             </div>

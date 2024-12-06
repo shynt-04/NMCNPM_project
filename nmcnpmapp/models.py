@@ -1,6 +1,6 @@
 #models.py
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-
+from django.core.exceptions import ValidationError
 from django.db import models
 
 class RoomUserManager(BaseUserManager):
@@ -65,6 +65,7 @@ class SuperUser(AbstractBaseUser, PermissionsMixin):  # Add PermissionsMixin her
 
     def __str__(self):
         return self.username
+    
 class apartment(models.Model):
     room_id = models.IntegerField(primary_key=True)
     area = models.IntegerField(default =0)
@@ -106,6 +107,11 @@ class Vehicle(models.Model):
         verbose_name = "Quản lý gửi xe"
         verbose_name_plural = "Quản lý gửi xe"
     
+    def save(self, *args, **kwargs):
+        if not RoomUser.objects.get(room_id=self.room_id).exists():
+            raise ValidationError("Cannot create notification because there are no users in this room")
+        super().save(*args, **kwargs)
+    
 class Charge(models.Model):
     # trường thứ nhất trong category_choices sẽ là giá trị lưu trong database, 
     # trường thứ hai sẽ là giá trị hiển thị trên giao diện
@@ -130,6 +136,11 @@ class Charge(models.Model):
     class Meta:
         verbose_name = "Quản lý khoản thu"
         verbose_name_plural = "Quản lý khoản thu"
+    def save(self, *args, **kwargs):
+        if not RoomUser.objects.get(room_id=self.room_id).exists():
+            raise ValidationError("Cannot create charge because there are no users in this room")
+        super().save(*args, **kwargs)
+
 # Store payment details
 class Payment(models.Model):
     payment_id = models.AutoField(primary_key=True,verbose_name="Mã thanh toán")
@@ -143,6 +154,10 @@ class Payment(models.Model):
         verbose_name_plural = "Quản lý khoản thanh toán"
     def __str__(self):
         return f"Mã thanh toán {self.payment_id}"
+    def save(self, *args, **kwargs):
+        if not RoomUser.objects.get(room_id=self.room_id).exists():
+            raise ValidationError("Cannot create payment because there are no users in this room")
+        super().save(*args, **kwargs)
 
 # Store family members details
 class FamilyMember(models.Model):
@@ -159,7 +174,10 @@ class FamilyMember(models.Model):
     class Meta:
         verbose_name = "Quản lý nhân khẩu"
         verbose_name_plural = "Quản lý nhân khẩu"
-
+    def save(self, *args, **kwargs):
+        if not RoomUser.objects.get(room_id=self.room_id).exists():
+            raise ValidationError("Cannot add member because there are no users in this room")
+        super().save(*args, **kwargs)
 # Store notification details
 class Article(models.Model):
     title = models.CharField(max_length=255,verbose_name="Tiêu đề")
@@ -172,13 +190,21 @@ class Article(models.Model):
         verbose_name = "Quản lý thông báo"
         verbose_name_plural = "Quản lý thông báo"
 
-# class Notification(models.Model):
-#     title = models.CharField(max_length=255,verbose_name="Tiêu đề")
-#     content = models.TextField(verbose_name="Nội dung")
-#     date = models.DateField(auto_now_add=True,verbose_name="Ngày đăng")
-#     room_id = models.ForeignKey(apartment, on_delete=models.CASCADE, related_name="notifications",verbose_name="Số phòng")
-#     class Meta:
-#         verbose_name = "Quản lý thông báo"
-#         verbose_name_plural = "Quản lý thông báo"
-#     def __str__(self):
-#         return self.title
+class Notification(models.Model):
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=255,verbose_name="Tiêu đề")
+    content = models.TextField(verbose_name="Nội dung")
+    date = models.DateField(auto_now_add=True,verbose_name="Ngày đăng")
+    room_id = models.ForeignKey(apartment, on_delete=models.CASCADE, related_name="notifications",verbose_name="Số phòng")
+    class Meta:
+        verbose_name = "Quản lý thông báo các hộ"
+        verbose_name_plural = "Quản lý thông báo các hộ"
+
+    
+    # def save(self, *args, **kwargs):
+    #     if not RoomUser.objects.filter(room_id=self.room_id).exists():
+    #         raise ValidationError("Cannot create notification because there are no users in this room")
+    #     super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title

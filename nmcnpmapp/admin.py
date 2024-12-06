@@ -1,8 +1,8 @@
 # admin.py
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Payment, Charge, FamilyMember, Article, RoomUser, SuperUser,apartment, Vehicle
-from .forms import ChargeForm
+from .models import Payment, Charge, FamilyMember, Article, RoomUser, SuperUser,apartment, Vehicle, Notification
+from .forms import ChargeForm, PaymentForm, NotificationForm
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 admin.site.site_header = "Chung cư Blue Moon"
@@ -92,7 +92,9 @@ class VehicleIn4(admin.ModelAdmin):
         extra_context['title'] = _("Quản lý gửi xe")
         return super().changelist_view(request, extra_context=extra_context)
 admin.site.register(Vehicle,VehicleIn4)
+
 class PaymentIn4(admin.ModelAdmin):
+    form = PaymentForm
     list_display = ('room_id', 'get_charge_name', 'amount','date','status')
     search_fields = ('room_id__room_id', 'charge_id__name','status')
     list_filter = ('status','charge_id__name','room_id')
@@ -108,6 +110,7 @@ class PaymentIn4(admin.ModelAdmin):
     # def display_status(self, obj):
     #     return "Đã thanh toán" if obj.status else "Chưa thanh toán"
 admin.site.register(Payment,PaymentIn4)
+
 class ApartIn4(admin.ModelAdmin):
     list_display = ('room_id', 'area')
     search_fields = ('room_id', 'area')
@@ -135,3 +138,17 @@ class FamilyMemberAdmin(admin.ModelAdmin):
 
 # Register the custom admin class with the FamilyMember model
 admin.site.register(FamilyMember, FamilyMemberAdmin)
+
+
+class NotiIn4(admin.ModelAdmin):
+    form = NotificationForm
+    list_display = ('title', 'content', 'room_id')
+    search_fields = ('title', 'author','room_id')
+    list_filter = ('date','room_id')
+   
+    # Tùy chỉnh title
+    def changelist_view(self, request, extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['title'] = _("Quản lý thông báo")
+        return super().changelist_view(request, extra_context=extra_context)
+admin.site.register(Notification,NotiIn4)

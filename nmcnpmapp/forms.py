@@ -1,11 +1,11 @@
 #forms.py
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import RoomUser,Charge,Payment,apartment,Vehicle
+from .models import RoomUser,Charge,Payment,apartment,Vehicle, Notification
 from django.contrib.auth import authenticate
 import pandas as pd 
 from django.core.exceptions import ValidationError
-
+from django.utils.translation import gettext_lazy as _
 # Custom form for creating RoomUser accounts
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -157,5 +157,59 @@ class ChargeForm(forms.ModelForm):
                 amount=50 if vehicle.type_vehicle == 0 else 100 if vehicle.type_vehicle == 1 else 300
             ))
         Payment.objects.bulk_create(payments)
+
+
+#form add thông báo cho từng hộ custom cho admin
+class NotificationForm(forms.ModelForm):
+    class Meta:
+        model = Notification
+        fields = ['title', 'content', 'room_id']
+
+    def __init__(self, *args, **kwargs):
+        super(NotificationForm, self).__init__(*args, **kwargs)
         
+        # Set the queryset for the room_id field to only rooms with approved users
+        self.fields['room_id'].queryset = RoomUser.objects.filter(is_approved=True).values_list('room_id', flat=True).distinct()
+
+    def clean_room_id(self):
+        room_id = self.cleaned_data.get('room_id')
+        
+        # Check if there are any approved users in the room
+        if not RoomUser.objects.filter(room_id=room_id, is_approved=True).exists():
+            raise forms.ValidationError("Phòng này không có người được duyệt nên không thể thêm thông báo !!!")
+        
+        # Retrieve the actual 'apartment' instance corresponding to room_id
+        apartment_instance = apartment.objects.get(room_id=room_id)
+        
+        # Return the apartment instance to be assigned to the Notification model
+        return apartment_instance
+
+
+#form add bill cho từng hộ custom cho admin
+
+class PaymentForm(forms.ModelForm):
+    class Meta:
+        model = Payment
+        fields = ['room_id', 'charge_id', 'amount', 'status']
+
+    room_id = forms.ModelChoiceField(queryset=apartment.objects.none(), label=_('Số phòng'))  # Initially empty queryset
+    charge_id = forms.ModelChoiceField(queryset=Charge.objects.all(), label=_('Khoản thu'))
+    amount = forms.DecimalField(max_digits=10, decimal_places=2, label=_('Số tiền'))
+    status = forms.ChoiceField(choices=[(True, 'Đã thanh toán'), (False, 'Chưa thanh toán')], label=_('Trạng thái'))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        # Filter rooms that have users associated with them
+        self.fields['room_id'].queryset = RoomUser.objects.filter(is_approved=True).values_list('room_id', flat=True).distinct()
+
+    def clean(self):
+        cleaned_data = super().clean()
+        room = cleaned_data.get('room_id')
+
+        # Check if the selected room is valid (it should always be, as the queryset is filtered)
+        if room and not RoomUser.objects.filter(room_id=room).exists():
+            raise ValidationError(_("Cannot create payment because there are no users in this room."))
+
+        return cleaned_data
         
