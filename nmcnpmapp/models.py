@@ -88,7 +88,7 @@ class RoomUser(AbstractBaseUser):
     def __str__(self):
         return self.username
     class Meta:
-        verbose_name = "Quản lý tài khoản"
+        verbose_name = "Tài khoản"
         verbose_name_plural = "Quản lý tài khoản"
 
 class Vehicle(models.Model):
@@ -104,7 +104,7 @@ class Vehicle(models.Model):
     type_vehicle = models.IntegerField(choices=CATEGORY_CHOICES,verbose_name="Loại xe")
     room_id = models.ForeignKey(apartment, on_delete=models.CASCADE, related_name="vehicles",verbose_name='Số phòng')
     class Meta:
-        verbose_name = "Quản lý gửi xe"
+        verbose_name = "Thông tin gửi xe"
         verbose_name_plural = "Quản lý gửi xe"
     
     def save(self, *args, **kwargs):
@@ -134,7 +134,7 @@ class Charge(models.Model):
     def __str__(self):
         return self.name
     class Meta:
-        verbose_name = "Quản lý khoản thu"
+        verbose_name = "Khoản thu"
         verbose_name_plural = "Quản lý khoản thu"
     def save(self, *args, **kwargs):
         if not RoomUser.objects.get(room_id=self.room_id).exists():
@@ -150,7 +150,7 @@ class Payment(models.Model):
     date = models.DateField(auto_now_add=True,verbose_name="Ngày tạo")
     status = models.BooleanField(default=False,verbose_name="Trạng thái")
     class Meta:
-        verbose_name = "Quản lý khoản thanh toán"
+        verbose_name = "Khoản thanh toán"
         verbose_name_plural = "Quản lý khoản thanh toán"
     def __str__(self):
         return f"Mã thanh toán {self.payment_id}"
@@ -172,7 +172,7 @@ class FamilyMember(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
     class Meta:
-        verbose_name = "Quản lý nhân khẩu"
+        verbose_name = "Nhân khẩu"
         verbose_name_plural = "Quản lý nhân khẩu"
     def save(self, *args, **kwargs):
         if not RoomUser.objects.get(room_id=self.room_id).exists():
@@ -187,7 +187,7 @@ class Article(models.Model):
     def __str__(self):
         return self.title
     class Meta:
-        verbose_name = "Quản lý thông báo"
+        verbose_name = "Thông báo"
         verbose_name_plural = "Quản lý thông báo"
 
 class Notification(models.Model):
