@@ -78,7 +78,7 @@ class RoomUser(AbstractBaseUser):
     registry_email = models.EmailField(default="example@gmail.com",verbose_name="Email")
     phone_number = models.CharField(max_length=10, unique=True,verbose_name="Số điện thoại")
     is_approved = models.BooleanField(default=False,verbose_name="Trạng thái")
-    is_active = models.BooleanField(default=True,verbose_name="Kích hoạt")
+    #is_active = models.BooleanField(default=True,verbose_name="Kích hoạt")
 
     objects = RoomUserManager()
 

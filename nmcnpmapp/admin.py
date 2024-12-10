@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import Payment, Charge, FamilyMember, Article, RoomUser, SuperUser,apartment, Vehicle, Notification
 from .forms import ChargeForm, PaymentForm, NotificationForm
+from . import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 admin.site.site_header = "Chung cư Blue Moon"
@@ -10,10 +11,15 @@ admin.site.site_title = "Quản lý chung cư"
 admin.site.index_title = "Các chức năng"
 # Register the Article model
 class ArticleAdmin(admin.ModelAdmin):
+    form = forms.ArticleForm
     list_display = ('title', 'content', 'date')
-    search_fields = ('title', 'author')
+    search_fields = ('title', 'content')
     list_filter = ('date',)
     readonly_fields = ('date',)
+    class Media:
+        css = {
+            'all': ('css/custom_admin.css',) 
+        }
     # Tùy chỉnh title
     def changelist_view(self, request, extra_context=None):
         extra_context = extra_context or {}
@@ -25,7 +31,12 @@ admin.site.register(Article, ArticleAdmin)
 @admin.register(RoomUser)
 class RoomUser(admin.ModelAdmin):
     list_display = ['username', 'room_id', 'registry_email','phone_number','is_approved']
-    search_fields = ['username', 'room_id', 'registry_email','phone_number','is_approved']
+    search_fields = ['username', 'room_id__room_id', 'registry_email','phone_number','is_approved']
+    exclude = ['last_login','password']
+    class Media:
+        css = {
+            'all': ('css/custom_admin.css',)  
+        }
     # Tùy chỉnh title
     def changelist_view(self, request, extra_context=None):
         extra_context = extra_context or {}
@@ -42,6 +53,10 @@ class ChargeAdmin(admin.ModelAdmin):
     list_display = ('category','name', 'create_at', 'create_by', 'deadline')
     search_fields = ('name','category','create_by__username')
     list_filter = ('category','create_at', 'deadline' )
+    class Media:
+        css = {
+            'all': ('css/custom_admin.css',)  
+        }
     # tạo title cho header
     def changelist_view(self, request, extra_context=None):
         extra_context = extra_context or {}
@@ -84,8 +99,12 @@ class ChargeAdmin(admin.ModelAdmin):
 admin.site.register(Charge,ChargeAdmin)
 class VehicleIn4(admin.ModelAdmin):
     list_display = ('room_id', 'license_plate', 'type_vehicle')
-    search_fields = ('license_plate', 'type_vehicle', 'room_id')
+    search_fields = ('license_plate', 'type_vehicle', 'room_id__room_id')
     list_filter = ('type_vehicle','room_id')
+    class Media:
+        css = {
+            'all': ('css/custom_admin.css',)
+        }
     # Tùy chỉnh title
     def changelist_view(self, request, extra_context=None):
         extra_context = extra_context or {}
@@ -98,6 +117,10 @@ class PaymentIn4(admin.ModelAdmin):
     list_display = ('room_id', 'get_charge_name', 'amount','date','status')
     search_fields = ('room_id__room_id', 'charge_id__name','status')
     list_filter = ('status','charge_id__name','room_id')
+    class Media:
+        css = {
+            'all': ('css/custom_admin.css',)  
+        }
     # Tùy chỉnh title
     def changelist_view(self, request, extra_context=None):
         extra_context = extra_context or {}
@@ -106,7 +129,7 @@ class PaymentIn4(admin.ModelAdmin):
     # Tùy chỉnh hiển thị cột
     @admin.display(description='Tên khoản thu')  # Đổi nhãn cột
     def get_charge_name(self, obj):
-        return obj.charge_id.name  # Truy cập trường name từ ForeignKey charge_id
+        return obj.charge_id.name 
     # def display_status(self, obj):
     #     return "Đã thanh toán" if obj.status else "Chưa thanh toán"
 admin.site.register(Payment,PaymentIn4)
@@ -116,11 +139,14 @@ class ApartIn4(admin.ModelAdmin):
     search_fields = ('room_id', 'area')
 # admin.site.register(apartment,ApartIn4)
 class FamilyMemberAdmin(admin.ModelAdmin):
-    # Display these fields in the list view of the admin
     list_display = ('room_id', 'first_name', 'last_name', 'date_of_birth', 'email', 'phone_number')
     search_fields = ('first_name', 'last_name', 'email', 'phone_number')
     list_filter = ('room_id',)
     readonly_fields = ('room_id',)
+    class Media:
+        css = {
+            'all': ('css/custom_admin.css',) 
+        }
     # Tùy chỉnh title
     def changelist_view(self, request, extra_context=None):
         extra_context = extra_context or {}
@@ -143,8 +169,12 @@ admin.site.register(FamilyMember, FamilyMemberAdmin)
 class NotiIn4(admin.ModelAdmin):
     form = NotificationForm
     list_display = ('title', 'content', 'room_id')
-    search_fields = ('title', 'author','room_id')
+    search_fields = ('title','room_id__room_id')
     list_filter = ('date','room_id')
+    class Media:
+        css = {
+            'all': ('css/custom_admin.css',) 
+        }
    
     # Tùy chỉnh title
     def changelist_view(self, request, extra_context=None):
