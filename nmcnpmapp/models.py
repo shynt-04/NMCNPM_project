@@ -187,7 +187,7 @@ class Article(models.Model):
     def __str__(self):
         return self.title
     class Meta:
-        verbose_name = "Quản lý thông báo"
+        verbose_name = "Thông báo"
         verbose_name_plural = "Quản lý thông báo"
 
 class Notification(models.Model):
