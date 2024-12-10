@@ -136,10 +136,7 @@ class Charge(models.Model):
     class Meta:
         verbose_name = "Khoản thu"
         verbose_name_plural = "Quản lý khoản thu"
-    def save(self, *args, **kwargs):
-        if not RoomUser.objects.get(room_id=self.room_id).exists():
-            raise ValidationError("Cannot create charge because there are no users in this room")
-        super().save(*args, **kwargs)
+
 
 # Store payment details
 class Payment(models.Model):
