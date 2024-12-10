@@ -4639,3 +4639,7 @@ Watching for file changes with StatReloader
 /mnt/c/Coding/Web_coding/NMCNPM_project/nmcnpmapp/forms.py changed, reloading.
 couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\forms.py changed, reloading.
+Watching for file changes with StatReloader

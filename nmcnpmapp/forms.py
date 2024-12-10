@@ -15,12 +15,12 @@ class CustomUserCreationForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Custom placeholders or widget settings if needed
-        self.fields['username'].widget.attrs.update({'placeholder': 'Enter username'})
-        self.fields['password1'].widget.attrs.update({'placeholder': 'Enter password'})
-        self.fields['password2'].widget.attrs.update({'placeholder': 'Confirm password'})
-        self.fields['room_id'].widget.attrs.update({'placeholder': 'Room ID'})
+        self.fields['username'].widget.attrs.update({'placeholder': 'Tên đăng nhập'})
+        self.fields['password1'].widget.attrs.update({'placeholder': 'Mật khẩu'})
+        self.fields['password2'].widget.attrs.update({'placeholder': 'Nhập lại mật khẩu'})
+        self.fields['room_id'].widget.attrs.update({'placeholder': 'Số hiệu phòng'})
         self.fields['registry_email'].widget.attrs.update({'placeholder': 'Email'})
-        self.fields['phone_number'].widget.attrs.update({'placeholder': 'Phone number'})
+        self.fields['phone_number'].widget.attrs.update({'placeholder': 'Số điện thoại'})
 
 # Custom form for authenticating RoomUser accounts
 class CustomAuthenticationForm(forms.Form):
