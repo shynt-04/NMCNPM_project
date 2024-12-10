@@ -84,3 +84,16 @@
 .custom-div3:hover .sub-user {
   display: block;
 }
+
+/* Mặc định ẩn phần help-text */
+.help-text {
+  display: none;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+/* Khi input được focus, hiển thị help-text */
+.input-group input:focus ~ .help-text {
+  display: block;
+  color: #6c757d; /* Màu chữ trợ giúp */
+}

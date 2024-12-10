@@ -11,8 +11,7 @@ TODO!!
 ## Cài đặt (Install & Config)
 1. Tải repository
 ```
-git clone https://github.com/Junchannn/IT3080_project.git
-cd IT3080_project
+https://github.com/shynt-04/NMCNPM_project.git
 ```
 2. Cài đặt thư viện Django
 ```
