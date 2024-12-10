@@ -22,10 +22,9 @@
         <style>
             /* Styles for the notification list */
             .list-group {
-                max-height: 400px; /* Đặt chiều cao tối đa cho phần thông báo */
                 overflow-y: auto;  /* Cho phép cuộn dọc */
                 padding: 10px;
-                background-color: #f9f9f9; /* Màu nền nhẹ nhàng */
+                background-color: #40313100; /* Màu nền nhẹ nhàng */
                 border-radius: 8px;
                 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Để phần thông báo có bóng nhẹ */
                 margin-bottom: 30px;
@@ -91,6 +90,41 @@
             .modal-footer {
                 text-align: right;
             }
+
+            .notifications {
+                width: 100vw; /* Chiếm toàn bộ chiều ngang */
+                background-color: #f9f9f9; /* Màu nền nhẹ */
+                padding: 20px 0; /* Khoảng cách trên dưới */
+                margin: 0; /* Loại bỏ margin */
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng */
+            }
+
+            .notifications h3 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .list-group {
+                max-width: 1200px; /* Giới hạn chiều rộng cho phần tử */
+                margin: 0 auto; /* Căn giữa nội dung */
+                padding: 0 15px;
+                overflow: visible;
+            }
+
+            .list-group-item {
+                border: none;
+                padding: 15px;
+                margin-bottom: 10px;
+                background-color: #fff;
+                transition: transform 0.3s ease-in-out;
+                border-radius: 8px;
+            }
+
+            .list-group-item:hover {
+                background-color: #f1f1f1;
+                transform: scale(1.02);
+            }
+
         </style>
     </head>
 <body>
@@ -142,45 +176,39 @@
         </div>
     </header>
 
-    <!-- Main Content -->
-    <div class="container mt-4">
+    <!-- Thông báo -->
+    <div class="notifications">
+        <h3>Thông báo mới</h3>
+        <div class="list-group">
+            {% for article in articles|slice:":-1" %}
+            <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#notificationModal{{ article.id }}">
+                <h5 class="mb-1">{{ article.title }}</h5>
+                <p class="mb-1">{{ article.content|slice:":50" }}...</p>
+                <small>Ngày đăng: {{ article.date }}</small>
+            </a>
 
-        <!-- News Section -->
-        <div class="row mt-5">
-            <div class="col-md-12">
-                <h3>Thông báo mới</h3>
-                <div class="list-group">
-                    {% for article in articles %}
-                    <a href="#" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#notificationModal{{ article.id }}">
-                        <h5 class="mb-1">{{ article.title }}</h5>
-                        <p class="mb-1">{{ article.content|slice:":50" }}...</p>
-                        <small>Ngày đăng: {{ article.date }}</small>
-                    </a>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="notificationModal{{ article.id }}" tabindex="-1" aria-labelledby="notificationModalLabel{{ article.id }}" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="notificationModalLabel{{ article.id }}">{{ article.title }}</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>{{ article.content }}</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                </div>
-                            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="notificationModal{{ article.id }}" tabindex="-1" aria-labelledby="notificationModalLabel{{ article.id }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="notificationModalLabel{{ article.id }}">{{ article.title }}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{ article.content }}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                         </div>
                     </div>
-                    {% empty %}
-                    <p>Không có thông báo mới nào.</p>
-                    {% endfor %}
                 </div>
             </div>
+            {% empty %}
+            <p>Không có thông báo mới nào.</p>
+            {% endfor %}
         </div>
     </div>
 
@@ -212,18 +240,34 @@
     </script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Tự động cuộn đến cuối danh sách thông báo
-            const notificationList = document.querySelector('.list-group');
-            notificationList.scrollTop = notificationList.scrollHeight;
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     // Tự động cuộn đến cuối danh sách thông báo
+        //     const notificationList = document.querySelector('.list-group');
+        //     notificationList.scrollTop = notificationList.scrollHeight;
 
-            // Hiệu ứng toast
-            const toasts = document.querySelectorAll('.toast');
-            toasts.forEach(toast => {
-                setTimeout(() => {
-                    toast.style.display = 'none';
-                }, 3500); // 3.5s để biến mất
-            });
+        //     // Hiệu ứng toast
+        //     const toasts = document.querySelectorAll('.toast');
+        //     toasts.forEach(toast => {
+        //         setTimeout(() => {
+        //             toast.style.display = 'none';
+        //         }, 3500); // 3.5s để biến mất
+        //     });
+        // });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const listGroup = document.querySelector('.list-group');
+            if (listGroup) {
+                Array.from(listGroup.children)
+                    .reverse()
+                    .forEach(child => listGroup.appendChild(child));
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const notificationList = document.querySelector('.list-group');
+            if (notificationList) {
+                notificationList.scrollTop = 0; // Đặt vị trí cuộn lên đầu
+            }
         });
     </script>
 
