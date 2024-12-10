@@ -49,8 +49,8 @@ class SignUpView(generic.CreateView):
         messages.success(self.request, "Tạo tài khoản thành công. Vui lòng đăng nhập.")  # Thông báo
         return super().form_valid(form)
 
-def homepage(request):
-    articles = Article.objects.all()
+def homepage_view(request):
+    articles = Article.objects.all().order_by('-date')
     return render(request, 'app/homepage.html', {'articles': articles})
 
 def about(request):

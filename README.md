@@ -11,17 +11,21 @@ TODO!!
 ## Cài đặt (Install & Config)
 1. Tải repository
 ```
-https://github.com/shynt-04/NMCNPM_project.git
+git clone https://github.com/shynt-04/NMCNPM_project.git
 ```
 2. Cài đặt thư viện Django
 ```
 pip install django
 python -m django --version
+pip install django-unfold
+pip install django-widget-tweaks
+pip install django-colorfield
+pip install django-admin-interface
 ```
 Yêu cầu Django phiên bản 4.2.8 trở lên
 
 ## Chạy phần mềm trên local (Local Deployment)
-Sau khi tải thư viện Django, có thể chạy ứng dụng với lệnh sau:
+Sau khi tải các thư viện cần thiết, có thể chạy ứng dụng với lệnh sau:
 ```
 python manage.py runserver
 ```
