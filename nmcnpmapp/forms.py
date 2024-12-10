@@ -2,6 +2,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import RoomUser,Charge,Payment,apartment,Vehicle, Notification
+from . import models
 from django.contrib.auth import authenticate
 import pandas as pd 
 from django.core.exceptions import ValidationError
@@ -212,4 +213,17 @@ class PaymentForm(forms.ModelForm):
             raise ValidationError(_("Cannot create payment because there are no users in this room."))
 
         return cleaned_data
+
+class ArticleForm(forms.ModelForm):
+    class Meta:
+        model = models.Article
+        fields = ['title', 'content']
+        widgets = {
+            'title': forms.TextInput(attrs={
+                'style': 'width: 80%;min-height: 40px',
+            }),
+            'content': forms.Textarea(attrs={
+                'style': 'width: 80%; min-height: 200px;',  # Tăng chiều rộng và chiều cao
+            }),
+        }
         
