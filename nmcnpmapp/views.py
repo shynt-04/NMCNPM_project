@@ -50,7 +50,7 @@ class SignUpView(generic.CreateView):
         return super().form_valid(form)
 
 def homepage_view(request):
-    articles = Article.objects.all().order_by('-date')
+    articles = Article.objects.order_by('-date')
     return render(request, 'app/homepage.html', {'articles': articles})
 
 def about(request):
@@ -63,7 +63,7 @@ def contact(request):
 def notification(request):
     try:
         user = RoomUser.objects.get(username=request.user.username)
-        notes = Notification.objects.filter(room_id=user.room_id)
+        notes = Notification.objects.filter(room_id=user.room_id).order_by('-date', '-id')
     except AttributeError:
         notes = []
     return render(request, 'app/notification.html', {'notes': notes})

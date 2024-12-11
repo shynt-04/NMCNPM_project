@@ -4701,3 +4701,34 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 Not Found: /favicon.ico
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+Internal Server Error: /notification/
+Traceback (most recent call last):
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\contrib\auth\decorators.py", line 60, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py", line 66, in notification
+    notes = Notification.objects.filter(room_id=user.room_id).order_by('-date', '-time')
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\query.py", line 1701, in order_by
+    obj.query.add_ordering(*field_names)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\sql\query.py", line 2249, in add_ordering
+    self.names_to_path(item.split(LOOKUP_SEP), self.model._meta)
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\.venv\Lib\site-packages\django\db\models\sql\query.py", line 1768, in names_to_path
+    raise FieldError(
+    ...<2 lines>...
+    )
+django.core.exceptions.FieldError: Cannot resolve keyword 'time' into field. Choices are: content, date, id, room_id, room_id_id, title
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\views.py changed, reloading.
+Watching for file changes with StatReloader

@@ -72,9 +72,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active"><a class="nav-link" href="/"><i class="fas fa-home"></i> Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="/"><i class="fas fa-home"></i> Trang chủ</a></li>
                 <li class="nav-item"><a class="nav-link" href="/service"><i class="fas fa-cogs"></i> Dịch vụ</a></li>
-                <li class="nav-item"><a class="nav-link" href="/about"><i class="fas fa-info-circle"></i> Giới thiệu</a></li>
+                <li class="nav-item active"><a class="nav-link" href="/about"><i class="fas fa-info-circle"></i> Giới thiệu</a></li>
                 <li class="nav-item"><a class="nav-link" href="/contact"><i class="fas fa-envelope"></i> Liên hệ</a></li>
                 <li class="nav-item"><a class="nav-link" href="/notification"><i class="fas fa-bell"></i> Thông báo</a></li>
             </ul>
@@ -123,7 +123,7 @@
                     <p>Nó cũng cung cấp các công cụ thống kê để nắm bắt tình hình tài chính và tăng cường tính minh bạch trong quản lý. Dự án này sẽ nâng cao quản lý chung cư qua công nghệ thông tin và hiệu quả hóa quy trình quản lý tài chính.</p>
                 </div>
                 <div class="div-child2 fade-in">
-                    <img src="{% static 'img/service.png' %}" alt="service-image">
+                    <img src="{% static 'img/service.png' %}?v=1" alt="service-image">
                 </div>
             </div>
             <div class="div-parent">
@@ -209,11 +209,11 @@
         const image = document.querySelector(".div-child2>img");
 
         const images = [
-            "{% static 'img/homepage.png' %}?v=1",
-            "{% static 'img/service.png' %}?",
-            "{% static 'img/about.png' %}?v=2",
-            "{% static 'img/login.png' %}?v=1",
-            "{% static 'img/signup.png' %}?v=1",
+            "{% static 'img/homepage.png' %}?v=2",
+            "{% static 'img/service.png' %}?v=2",
+            "{% static 'img/about.png' %}?v=3",
+            "{% static 'img/login.png' %}?v=2",
+            "{% static 'img/signup.png' %}?v=2",
         ];
 
         const interval = setInterval(() => {
