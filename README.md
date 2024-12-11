@@ -4,10 +4,10 @@ TODO!!
 ## Thành viên nhóm 3
 | Thành viên                                        | MSSV     | Vai trò     | Nhiệm vụ                              |
 | ------------------------------------------------- | -------- | ----------- | ------------------------------------- |
-| [Nguyễn Đăng Phúc]  |  | Trưởng nhóm | Backend, Frontend (Lập trình)         |
-| [Vũ Trường An]       |  | Phó nhóm    | Frontend (Thiết kế giao diện)         |
-| [Nguyễn Ngọc Kiệt]   |  |             | Frontend (Lập trình), Kiểm thử (Test) |
-| [Lê Danh Vinh] |  |             | Frontend (Lập trình)                  |
+| [Nguyễn Đăng Phúc]  | 20220040 | Trưởng nhóm | Backend, Frontend (Lập trình)         |
+| [Vũ Trường An]       | 20220058 | Phó nhóm    | Frontend (Thiết kế giao diện)         |
+| [Nguyễn Ngọc Kiệt]   | 20220052 | Thành viên | Frontend (Lập trình), Kiểm thử (Test) |
+| [Lê Danh Vinh] | 20220051 | Thành viên | Frontend (Lập trình)                  |
 ## Cài đặt (Install & Config)
 1. Tải repository
 ```

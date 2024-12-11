@@ -4920,3 +4920,6 @@ Watching for file changes with StatReloader
     )
 django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 226: 'endfor', expected 'elif', 'else' or 'endif'. Did you forget to register or load this tag?
 >>>>>>> a4055c5ee4ded5446ad5b14f298349aaaa767d70
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
