@@ -32,6 +32,11 @@ python manage.py runserver
 ```
 Ứng dụng sẽ được chạy local ở [http://localhost:8000](http://localhost:8000) (8000 là port mặc định của Django)
 
+```
+Folder myproject
+```
+
+
 ## DEMO 
 TODO!!
 
