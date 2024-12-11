@@ -50,7 +50,7 @@ class SignUpView(generic.CreateView):
         return super().form_valid(form)
 
 def homepage_view(request):
-    articles = Article.objects.order_by('-date')
+    articles = Article.objects.order_by('date')
     return render(request, 'app/homepage.html', {'articles': articles})
 
 def about(request):
@@ -99,7 +99,7 @@ def password_change_done(request):
 @login_required
 def view_payment(request):
     user = RoomUser.objects.get(username=request.user.username)
-    payments = Payment.objects.filter(room_id=user.room_id)
+    payments = Payment.objects.filter(room_id=user.room_id,status = False)
     payment_info_list = [
         {
             'khoan_thu': payment.charge_id.name,

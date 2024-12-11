@@ -107,10 +107,10 @@ class Vehicle(models.Model):
         verbose_name = "Thông tin gửi xe"
         verbose_name_plural = "Quản lý gửi xe"
     
-    def save(self, *args, **kwargs):
-        if not RoomUser.objects.get(room_id=self.room_id).exists():
-            raise ValidationError("Cannot create notification because there are no users in this room")
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if not RoomUser.objects.get(room_id=self.room_id).exists():
+    #         raise ValidationError("Cannot create notification because there are no users in this room")
+    #     super().save(*args, **kwargs)
     
 class Charge(models.Model):
     # trường thứ nhất trong category_choices sẽ là giá trị lưu trong database, 
@@ -151,10 +151,10 @@ class Payment(models.Model):
         verbose_name_plural = "Quản lý khoản thanh toán"
     def __str__(self):
         return f"Mã thanh toán {self.payment_id}"
-    def save(self, *args, **kwargs):
-        if not RoomUser.objects.get(room_id=self.room_id).exists():
-            raise ValidationError("Cannot create payment because there are no users in this room")
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if not RoomUser.objects.get(room_id=self.room_id).exists():
+    #         raise ValidationError("Cannot create payment because there are no users in this room")
+    #     super().save(*args, **kwargs)
 
 # Store family members details
 class FamilyMember(models.Model):
@@ -171,10 +171,10 @@ class FamilyMember(models.Model):
     class Meta:
         verbose_name = "Nhân khẩu"
         verbose_name_plural = "Quản lý nhân khẩu"
-    def save(self, *args, **kwargs):
-        if not RoomUser.objects.get(room_id=self.room_id).exists():
-            raise ValidationError("Cannot add member because there are no users in this room")
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if not RoomUser.objects.get(room_id=self.room_id).exists():
+    #         raise ValidationError("Cannot add member because there are no users in this room")
+    #     super().save(*args, **kwargs)
 # Store notification details
 class Article(models.Model):
     title = models.CharField(max_length=255,verbose_name="Tiêu đề")
