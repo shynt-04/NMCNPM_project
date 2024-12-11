@@ -25,6 +25,12 @@ class ArticleAdmin(admin.ModelAdmin):
         extra_context = extra_context or {}
         extra_context['title'] = _("Quản lý thông báo")
         return super().changelist_view(request, extra_context=extra_context)
+    # Tắt các nút "Lưu và thêm mới" và "Lưu và tiếp tục chỉnh sửa" mặc định của Django
+    def changeform_view(self, request, object_id=None, form_url='', extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['show_save_and_add_another'] = False
+        extra_context['show_save_and_continue'] = False
+        return super().changeform_view(request, object_id, form_url, extra_context)
 admin.site.register(Article, ArticleAdmin)
 
 # Customized admin for RoomUser
@@ -42,6 +48,12 @@ class RoomUser(admin.ModelAdmin):
         extra_context = extra_context or {}
         extra_context['title'] = _("Quản lý tài khoản")
         return super().changelist_view(request, extra_context=extra_context)
+    # Tắt các nút "Lưu và thêm mới" và "Lưu và tiếp tục chỉnh sửa" mặc định của Django
+    def changeform_view(self, request, object_id=None, form_url='', extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['show_save_and_add_another'] = False
+        extra_context['show_save_and_continue'] = False
+        return super().changeform_view(request, object_id, form_url, extra_context)
 # @admin.register(SuperUser)
 # class SuperUserAdmin(admin.ModelAdmin):
 #     list_display = ['username', 'email','password']
@@ -62,6 +74,12 @@ class ChargeAdmin(admin.ModelAdmin):
         extra_context = extra_context or {}
         extra_context['title'] = _("Quản lý khoản thu")
         return super().changelist_view(request, extra_context=extra_context)
+    # Tắt các nút "Lưu và thêm mới" và "Lưu và tiếp tục chỉnh sửa" mặc định của Django
+    def changeform_view(self, request, object_id=None, form_url='', extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['show_save_and_add_another'] = False
+        extra_context['show_save_and_continue'] = False
+        return super().changeform_view(request, object_id, form_url, extra_context)
     
     # save charge into database
     def save_model(self, request, obj, form, change):
@@ -110,6 +128,12 @@ class VehicleIn4(admin.ModelAdmin):
         extra_context = extra_context or {}
         extra_context['title'] = _("Quản lý gửi xe")
         return super().changelist_view(request, extra_context=extra_context)
+    # Tắt các nút "Lưu và thêm mới" và "Lưu và tiếp tục chỉnh sửa" mặc định của Django
+    def changeform_view(self, request, object_id=None, form_url='', extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['show_save_and_add_another'] = False
+        extra_context['show_save_and_continue'] = False
+        return super().changeform_view(request, object_id, form_url, extra_context)
 admin.site.register(Vehicle,VehicleIn4)
 
 class PaymentIn4(admin.ModelAdmin):
@@ -132,6 +156,12 @@ class PaymentIn4(admin.ModelAdmin):
         return obj.charge_id.name 
     # def display_status(self, obj):
     #     return "Đã thanh toán" if obj.status else "Chưa thanh toán"
+    # Tắt các nút "Lưu và thêm mới" và "Lưu và tiếp tục chỉnh sửa" mặc định của Django
+    def changeform_view(self, request, object_id=None, form_url='', extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['show_save_and_add_another'] = False
+        extra_context['show_save_and_continue'] = False
+        return super().changeform_view(request, object_id, form_url, extra_context)
 admin.site.register(Payment,PaymentIn4)
 
 class ApartIn4(admin.ModelAdmin):
@@ -152,6 +182,12 @@ class FamilyMemberAdmin(admin.ModelAdmin):
         extra_context = extra_context or {}
         extra_context['title'] = _("Quản lý nhân khẩu")
         return super().changelist_view(request, extra_context=extra_context)
+    # Tắt các nút "Lưu và thêm mới" và "Lưu và tiếp tục chỉnh sửa" mặc định của Django
+    def changeform_view(self, request, object_id=None, form_url='', extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['show_save_and_add_another'] = False
+        extra_context['show_save_and_continue'] = False
+        return super().changeform_view(request, object_id, form_url, extra_context)
     # Organize fields into sections in the detail view
     fieldsets = (
         (None, {
@@ -181,4 +217,10 @@ class NotiIn4(admin.ModelAdmin):
         extra_context = extra_context or {}
         extra_context['title'] = _("Quản lý thông báo")
         return super().changelist_view(request, extra_context=extra_context)
+    # Tắt các nút "Lưu và thêm mới" và "Lưu và tiếp tục chỉnh sửa" mặc định của Django
+    def changeform_view(self, request, object_id=None, form_url='', extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['show_save_and_add_another'] = False
+        extra_context['show_save_and_continue'] = False
+        return super().changeform_view(request, object_id, form_url, extra_context)
 admin.site.register(Notification,NotiIn4)
