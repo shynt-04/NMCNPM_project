@@ -107,10 +107,10 @@ class Vehicle(models.Model):
         verbose_name = "Thông tin gửi xe"
         verbose_name_plural = "Quản lý gửi xe"
     
-    def save(self, *args, **kwargs):
-        if not RoomUser.objects.get(room_id=self.room_id).exists():
-            raise ValidationError("Cannot create notification because there are no users in this room")
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if not RoomUser.objects.get(room_id=self.room_id).exists():
+    #         raise ValidationError("Cannot create notification because there are no users in this room")
+    #     super().save(*args, **kwargs)
     
 class Charge(models.Model):
     # trường thứ nhất trong category_choices sẽ là giá trị lưu trong database, 

@@ -24,69 +24,125 @@
         AOS.init();
     </script>
     <style>
+        .modal-header, .modal-footer {
+            border-bottom: none; /* Remove default border lines */
+            border-top: none;
+        }
+    
+        .modal-header h5 {
+            font-weight: bold;
+            color: #333;
+        }
+    
+        .modal-body {
+            padding: 20px; /* Add padding for spacing within the box */
+            background-color: #f8f9fa; /* Light background for content */
+        }
+    
         /* Modal box styling */
+        .modal-dialog {
+            max-width: 80%; /* Thay đổi giá trị này để modal rộng hơn hoặc nhỏ hơn */
+            width: 80%; /* Có thể dùng để kiểm soát chiều rộng chính xác của modal */
+        }
+    
         .modal-content {
             border-radius: 10px; /* Rounded corners for a soft look */
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
             border: 1px solid #ddd; /* Light border around the box */
         }
-
-        .modal-header, .modal-footer {
-            border-bottom: none; /* Remove default border lines */
-            border-top: none;
-        }
-
-        .modal-header h5 {
-            font-weight: bold;
-            color: #333;
-        }
-
-        .modal-body {
-            padding: 20px; /* Add padding for spacing within the box */
-            background-color: #f8f9fa; /* Light background for content */
-        }
-
+    
         .table {
             margin: 0;
             font-size: 0.95rem;
             color: #555;
         }
-
+    
         .modal-footer {
             display: flex;
             justify-content: center;
             padding-top: 15px;
         }
-
+    
         .service-card {
             border: none;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
         }
-
+    
         .service-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
-
+    
         .card-img-top {
             width: 50%;
             margin: 15px auto 0;
         }
-
+    
         .card-body {
             padding: 20px;
         }
-
+    
         .card-title {
             font-size: 18px;
             font-weight: bold;
         }
-
+    
         .card-text {
             font-size: 14px;
             color: #555;
+        }
+    
+        /* Modal QR Code Styling */
+        .modal-qr .modal-dialog {
+            max-width: 200px; /* Giới hạn chiều rộng của modal */
+            width: auto; /* Tự động điều chỉnh chiều rộng */
+        }
+    
+        .modal-qr .modal-content {
+            border-radius: 8px; /* Giữ các góc bo tròn */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Shadow nhẹ */
+        }
+    
+        .modal-qr .modal-header {
+            background-color: #f8f9fa; /* Màu nền nhẹ */
+            border-bottom: 1px solid #ddd; /* Đường viền dưới modal */
+        }
+    
+        .modal-qr .modal-title {
+            font-size: 16px; /* Chữ tiêu đề nhỏ hơn */
+            font-weight: bold;
+        }
+    
+        .modal-qr .modal-body {
+            padding: 0; /* Loại bỏ padding cho layout gọn gàng */
+            display: flex;
+            justify-content: center; /* Căn giữa hình ảnh */
+            align-items: center; /* Căn giữa hình ảnh theo chiều dọc */
+        }
+    
+        .modal-qr .modal-footer {
+            background-color: #f8f9fa; /* Màu nền footer nhẹ */
+            border-top: 1px solid #ddd; /* Đường viền trên footer */
+        }
+    
+        .modal-qr .qr-img {
+            width: 100%; /* Lấp đầy chiều rộng modal */
+            height: auto; /* Đảm bảo tỷ lệ khung hình không bị biến dạng */
+            max-width: 300px; /* Giới hạn chiều rộng tối đa của hình ảnh */
+            object-fit: contain; /* Giữ nguyên tỷ lệ khung hình của hình ảnh */
+        }
+    
+        /* Media Queries cho màn hình nhỏ */
+        @media (max-width: 768px) {
+            .modal-qr .modal-dialog {
+                max-width: 90%; /* Modal nhỏ hơn trên màn hình nhỏ */
+            }
+    
+            .modal-qr .qr-img {
+                max-width: 150px; /* QR code nhỏ hơn trên màn hình nhỏ */
+            }
         }
     </style>
 </head>
@@ -163,7 +219,7 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Thêm thành viên</h5>
                             <p class="card-text">Thêm thông tin thành viên mới vào hệ thống.</p>
-                            <a href="{% url 'add_member' %}" class="btn btn-success">Chi tiết</a>
+                            <a href="{% url 'add_member' %}" class="btn btn-primary">Chi tiết</a>
                         </div>
                     </div>
                 </div>
@@ -173,7 +229,7 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">Tình trạng đóng phí</h5>
                             <p class="card-text">Xem chi tiết tình trạng đóng phí của gia đình bạn.</p>
-                            <button class="btn btn-warning" data-toggle="modal" data-target="#service2Modal">Chi tiết</button>
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#service2Modal">Chi tiết</button>
                         </div>
                     </div>
                 </div>
@@ -197,8 +253,9 @@
                             <tr>
                                 <th scope="col">Khoản Thu</th>
                                 <th scope="col">Phí</th>
-                                <th scope="col">Đã Đóng</th>
+                                <th scope="col">Tình trạng</th>
                                 <th scope="col">Hạn Nộp</th>
+                                <th scope="col">Chuyển khoản</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -209,6 +266,13 @@
                                         <td>{{ info.phi }} đồng</td>
                                         <td>{% if info.da_dong %} Đã đóng {% else %} Chưa đóng {% endif %}</td>
                                         <td>{{ info.han_nop }}</td>
+                                        <td>
+                                            {% if not info.da_dong %}
+                                            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#qrModal">
+                                                Xem QR Code
+                                            </button>
+                                            {% endif %}
+                                        </td>
                                     </tr>
                                 {% endfor %}
                             {% else %}
@@ -218,6 +282,27 @@
                             {% endif %}
                         </tbody>
                     </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal QR Code: Chuyển khoản -->
+    <div class="modal fade" id="qrModal" tabindex="-1" role="dialog" aria-labelledby="qrModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-qr" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="qrModalLabel">QR Code Chuyển Khoản</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-0 text-center"> <!-- Loại bỏ padding và canh giữa -->
+                    <!-- Hình ảnh QR Code với chiều rộng phù hợp với modal -->
+                    <img src="{% static 'img/qrcode.jpg' %}" alt="QR Code chuyển khoản" class="qr-img">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
