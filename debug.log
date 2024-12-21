@@ -4923,3 +4923,9 @@ django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 226: '
 Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 Not Found: /favicon.ico
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\models.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\models.py changed, reloading.
+Watching for file changes with StatReloader

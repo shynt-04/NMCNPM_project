@@ -163,6 +163,7 @@ class FamilyMember(models.Model):
     first_name = models.CharField(max_length=50,verbose_name="Họ")
     last_name = models.CharField(max_length=50,verbose_name="Tên")
     date_of_birth = models.DateField(null=True, blank=True,verbose_name="Ngày sinh")
+    cccd = models.CharField(max_length=12,verbose_name="Số CCCD")
     email = models.EmailField(default="lol@gmail.com")
     phone_number = models.CharField(max_length=10, default="0123456789",verbose_name="Số điện thoại")
 
