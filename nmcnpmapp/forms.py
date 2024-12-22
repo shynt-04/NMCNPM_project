@@ -193,24 +193,24 @@ class PaymentForm(forms.ModelForm):
         model = Payment
         fields = ['room_id', 'charge_id', 'amount', 'status']
 
-    room_id = forms.ModelChoiceField(queryset=apartment.objects.none(), label=_('Số phòng'))  # Initially empty queryset
+    room_id = forms.ModelChoiceField(queryset=apartment.objects.all(), label=_('Số phòng'))  # Initially empty queryset
     charge_id = forms.ModelChoiceField(queryset=Charge.objects.all(), label=_('Khoản thu'))
     amount = forms.DecimalField(max_digits=10, decimal_places=2, label=_('Số tiền'))
     status = forms.ChoiceField(choices=[(True, 'Đã thanh toán'), (False, 'Chưa thanh toán')], label=_('Trạng thái'))
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
         
-        # Filter rooms that have users associated with them
-        self.fields['room_id'].queryset = RoomUser.objects.filter(is_approved=True).values_list('room_id', flat=True).distinct()
+    #     # Filter rooms that have users associated with them
+    #     self.fields['room_id'].queryset = RoomUser.objects.filter(is_approved=True).values_list('room_id', flat=True).distinct()
 
     def clean(self):
         cleaned_data = super().clean()
         room = cleaned_data.get('room_id')
 
         # Check if the selected room is valid (it should always be, as the queryset is filtered)
-        if room and not RoomUser.objects.filter(room_id=room).exists():
-            raise ValidationError(_("Cannot create payment because there are no users in this room."))
+        # if room and not RoomUser.objects.filter(room_id=room).exists():
+        #     raise ValidationError(_("Cannot create payment because there are no users in this room."))
 
         return cleaned_data
 

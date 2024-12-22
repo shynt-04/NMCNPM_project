@@ -5039,3 +5039,13 @@ Traceback (most recent call last):
            ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
 django.db.utils.OperationalError: table nmcnpmapp_familymember has no column named cccd
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
+E:\TaiLieuBachKhoa\CNPM\NMCNPM_project\nmcnpmapp\forms.py changed, reloading.
+Watching for file changes with StatReloader
