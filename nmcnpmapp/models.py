@@ -133,6 +133,12 @@ class Charge(models.Model):
     
     def __str__(self):
         return self.name
+    
+    def get_payment_summary(self):
+        total_rooms = self.target_room.count()
+        paid_rooms = self.payments.filter(status=True).values_list('room_id', flat=True).distinct().count()
+        return f"{paid_rooms} / {total_rooms}"
+
     class Meta:
         verbose_name = "Khoản thu"
         verbose_name_plural = "Quản lý khoản thu"

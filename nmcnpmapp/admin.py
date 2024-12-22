@@ -62,9 +62,14 @@ class RoomUser(admin.ModelAdmin):
 # Register other models
 class ChargeAdmin(admin.ModelAdmin):
     form = ChargeForm
-    list_display = ('category','name', 'create_at', 'create_by', 'deadline')
-    search_fields = ('name','category','create_by__username')
-    list_filter = ('category','create_at', 'deadline' )
+    list_display = ('category', 'name', 'create_at', 'create_by', 'deadline', 'get_payment_summary')
+    search_fields = ('name', 'category', 'create_by__username')
+    list_filter = ('category', 'create_at', 'deadline')
+    
+    @admin.display(description='Số phòng đã nộp')
+    def get_payment_summary(self, obj):
+        return obj.get_payment_summary()
+    
     class Media:
         css = {
             'all': ('css/custom_admin.css',)  
