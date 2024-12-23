@@ -5422,3 +5422,5 @@ Watching for file changes with StatReloader
 Watching for file changes with StatReloader
 Forbidden (CSRF token from POST incorrect.): /login/
 Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /favicon.ico
