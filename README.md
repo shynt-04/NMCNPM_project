@@ -21,6 +21,7 @@ pip install django-unfold
 pip install django-widget-tweaks
 pip install django-colorfield
 pip install django-admin-interface
+pip install pandas
 ```
 Yêu cầu Django phiên bản 4.2.8 trở lên
 

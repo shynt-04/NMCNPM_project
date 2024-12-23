@@ -30,6 +30,7 @@ def login_view(request):
         else:
             # Hiển thị thông báo lỗi nếu thông tin đăng nhập không chính xác
             messages.error(request, "Tên đăng nhập hoặc mật khẩu không chính xác.")
+            return redirect('login')
     
     else:
         form = CustomAuthenticationForm()
