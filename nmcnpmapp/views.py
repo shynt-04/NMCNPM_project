@@ -100,7 +100,7 @@ def password_change_done(request):
 @login_required
 def view_payment(request):
     user = RoomUser.objects.get(username=request.user.username)
-    payments = Payment.objects.filter(room_id=user.room_id,status = False)
+    payments = Payment.objects.filter(room_id=user.room_id)
     payment_info_list = [
         {
             'khoan_thu': payment.charge_id.name,
@@ -112,6 +112,11 @@ def view_payment(request):
     ]
     return render(request, 'app/service.html', {'payment_info_list': payment_info_list})
 
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.db import IntegrityError
+
 @login_required
 def add_member(request):
     if request.method == 'POST':
@@ -119,25 +124,38 @@ def add_member(request):
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         dob = request.POST.get('date_of_birth')
+        cccd = request.POST.get('cccd')  # Trường Căn cước công dân
         email = request.POST.get('email')
         phone_number = request.POST.get('phone_number')
 
         # Kiểm tra dữ liệu hợp lệ
-        if first_name and last_name and dob and email and phone_number:
+        if not (first_name and last_name and dob and email and phone_number and cccd):
+            messages.error(request, "Vui lòng nhập đầy đủ thông tin hợp lệ.")
+            return redirect('service')
+
+        try:
+            # Tạo thành viên mới
             FamilyMember.objects.create(
                 room_id=room_user.room_id,
                 first_name=first_name,
                 last_name=last_name,
                 date_of_birth=dob,
+                cccd=cccd,
                 email=email,
                 phone_number=phone_number
             )
             messages.success(request, "Thêm thành viên thành công.")
-        else:
-            messages.error(request, "Vui lòng nhập đầy đủ thông tin hợp lệ.")
+        except IntegrityError:
+            # Xử lý lỗi UNIQUE constraint liên quan đến CCCD hoặc các trường khác
+            messages.error(request, "Thông tin thành viên không hợp lệ. CCCD đã tồn tại.")
+        except Exception as e:
+            # Xử lý các lỗi không mong muốn khác
+            messages.error(request, f"Đã xảy ra lỗi: {str(e)}")
+
         return redirect('service')
 
     return render(request, 'app/add_member.html')
+
 
 @login_required
 def wait(request):
