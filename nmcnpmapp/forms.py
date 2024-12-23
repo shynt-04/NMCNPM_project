@@ -7,6 +7,8 @@ from django.contrib.auth import authenticate
 import pandas as pd 
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+import datetime
+
 # Custom form for creating RoomUser accounts
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -81,6 +83,10 @@ class ChargeForm(forms.ModelForm):
         category = cleaned_data.get("category")
         excel_file = cleaned_data.get("excel_file")
         unit_price = cleaned_data.get("unit_price")
+        deadline = cleaned_data.get("deadline")
+
+        if deadline and deadline <= datetime.date.today():  # Assuming deadline is a date object
+            raise forms.ValidationError("Hạn nộp phí không hợp lệ")
 
         # Kiểm tra điều kiện theo loại khoản thu
         if category in ["Tiền điện", "Tiền nước"]:
@@ -132,6 +138,7 @@ class ChargeForm(forms.ModelForm):
             return target_residents
         except Exception as e:
             raise ValidationError(f"Lỗi xử lý file Excel: {e}")
+        
     def calculate_service_fee(self, unit_price, charge_instance):
         """
         Tính toán amount = đơn giá * diện tích cho Phí dịch vụ/Phí quản lý.
@@ -193,11 +200,11 @@ class PaymentForm(forms.ModelForm):
         model = Payment
         fields = ['room_id', 'charge_id', 'amount', 'status']
 
-    room_id = forms.ModelChoiceField(queryset=apartment.objects.all(), label=_('Số phòng'))  # Initially empty queryset
     charge_id = forms.ModelChoiceField(queryset=Charge.objects.all(), label=_('Khoản thu'))
+    room_id = forms.ModelChoiceField(queryset=apartment.objects.all(), label=_('Số phòng'))  # Initially empty queryset
     amount = forms.DecimalField(max_digits=10, decimal_places=2, label=_('Số tiền'))
     status = forms.ChoiceField(choices=[(True, 'Đã thanh toán'), (False, 'Chưa thanh toán')], label=_('Trạng thái'))
-
+    
     # def __init__(self, *args, **kwargs):
     #     super().__init__(*args, **kwargs)
         
@@ -206,12 +213,13 @@ class PaymentForm(forms.ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
-        room = cleaned_data.get('room_id')
-
+        status = cleaned_data.get('status')
         # Check if the selected room is valid (it should always be, as the queryset is filtered)
         # if room and not RoomUser.objects.filter(room_id=room).exists():
         #     raise ValidationError(_("Cannot create payment because there are no users in this room."))
-
+        if status:
+            cleaned_data["status"] = "Đã thanh toán"
+        else: cleaned_data["status"] = "Chưa thanh toán"
         return cleaned_data
 
 class ArticleForm(forms.ModelForm):

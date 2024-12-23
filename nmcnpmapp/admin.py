@@ -143,30 +143,39 @@ admin.site.register(Vehicle,VehicleIn4)
 
 class PaymentIn4(admin.ModelAdmin):
     form = PaymentForm
-    list_display = ('room_id', 'get_charge_name', 'amount','date','status')
-    search_fields = ('room_id__room_id', 'charge_id__name','status')
-    list_filter = ('status','charge_id__name','room_id')
+    list_display = ('room_id', 'amount', 'date', 'status')
+    search_fields = ('room_id__room_id', 'charge_id__name', 'status')
+    list_filter = ('charge_id__name', 'room_id')
+    readonly_fields = ('charge_id','room_id', 'amount', 'date', 'status')
+
     class Media:
         css = {
-            'all': ('css/custom_admin.css',)  
+            'all': ('css/custom_admin.css',)  # Custom CSS for admin panel
         }
-    # Tùy chỉnh title
+
+    # Customizing the title of the changelist view
     def changelist_view(self, request, extra_context=None):
         extra_context = extra_context or {}
-        extra_context['title'] = _("Quản lý thanh toán")
+        extra_context['title'] = _("Quản lý thanh toán")  # Translatable title
         return super().changelist_view(request, extra_context=extra_context)
-    # Tùy chỉnh hiển thị cột
-    @admin.display(description='Tên khoản thu')  # Đổi nhãn cột
-    def get_charge_name(self, obj):
-        return obj.charge_id.name 
+
+    # Custom display for "charge name" with a column label
+    # @admin.display(description=_('Tên khoản thu'))  # Translatable column label
+    # def get_charge_name(self, obj):
+    #     return obj.charge_id.name if obj.charge_id else "N/A"
+
+    # # Custom display for "status" with a column label
+    # @admin.display(description=_('Trạng thái'))  # Translatable column label
     # def display_status(self, obj):
-    #     return "Đã thanh toán" if obj.status else "Chưa thanh toán"
-    # Tắt các nút "Lưu và thêm mới" và "Lưu và tiếp tục chỉnh sửa" mặc định của Django
+    #     return _("Đã thanh toán") if obj.status else _("Chưa thanh toán")
+
+    # Customizing the change form view to hide default save buttons
     def changeform_view(self, request, object_id=None, form_url='', extra_context=None):
         extra_context = extra_context or {}
-        extra_context['show_save_and_add_another'] = False
-        extra_context['show_save_and_continue'] = False
+        extra_context['show_save_and_add_another'] = False  # Disable "Save and add another"
+        extra_context['show_save_and_continue'] = False  # Disable "Save and continue editing"
         return super().changeform_view(request, object_id, form_url, extra_context)
+    
 admin.site.register(Payment,PaymentIn4)
 
 class ApartIn4(admin.ModelAdmin):
