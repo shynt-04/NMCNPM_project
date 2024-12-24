@@ -38,7 +38,7 @@ admin.site.register(Article, ArticleAdmin)
 class RoomUser(admin.ModelAdmin):
     list_display = ['username', 'room_id', 'registry_email','phone_number','is_approved']
     search_fields = ['username', 'room_id__room_id', 'registry_email','phone_number','is_approved']
-    exclude = ['last_login','password']
+    exclude = ['last_login','password', 'is_active']
     class Media:
         css = {
             'all': ('css/custom_admin.css',)  
@@ -146,7 +146,7 @@ class PaymentIn4(admin.ModelAdmin):
     list_display = ('room_id', 'amount', 'date', 'status')
     search_fields = ('room_id__room_id', 'charge_id__name', 'status')
     list_filter = ('charge_id__name', 'room_id')
-    readonly_fields = ('charge_id','room_id', 'amount', 'date', 'status')
+    readonly_fields = ('charge_id','room_id', 'amount', 'date')
 
     class Media:
         css = {

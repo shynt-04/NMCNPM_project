@@ -203,23 +203,14 @@ class PaymentForm(forms.ModelForm):
     charge_id = forms.ModelChoiceField(queryset=Charge.objects.all(), label=_('Khoản thu'))
     room_id = forms.ModelChoiceField(queryset=apartment.objects.all(), label=_('Số phòng'))  # Initially empty queryset
     amount = forms.DecimalField(max_digits=10, decimal_places=2, label=_('Số tiền'))
-    status = forms.ChoiceField(choices=[(True, 'Đã thanh toán'), (False, 'Chưa thanh toán')], label=_('Trạng thái'))
+    status = forms.ChoiceField(
+        choices=[(True, _('Đã thanh toán')), (False, _('Chưa thanh toán'))], 
+        label=_('Trạng thái')
+    )
     
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-        
-    #     # Filter rooms that have users associated with them
-    #     self.fields['room_id'].queryset = RoomUser.objects.filter(is_approved=True).values_list('room_id', flat=True).distinct()
-
     def clean(self):
         cleaned_data = super().clean()
-        status = cleaned_data.get('status')
-        # Check if the selected room is valid (it should always be, as the queryset is filtered)
-        # if room and not RoomUser.objects.filter(room_id=room).exists():
-        #     raise ValidationError(_("Cannot create payment because there are no users in this room."))
-        if status:
-            cleaned_data["status"] = "Đã thanh toán"
-        else: cleaned_data["status"] = "Chưa thanh toán"
+        # Kiểm tra các logic cần thiết tại đây (nếu có)
         return cleaned_data
 
 class ArticleForm(forms.ModelForm):
