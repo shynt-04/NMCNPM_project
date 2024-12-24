@@ -150,7 +150,11 @@ class PaymentIn4(admin.ModelAdmin):
     search_fields = ('room_id__room_id', 'charge_id__name', 'status')
     list_filter = ('charge_id__name', 'room_id')
     readonly_fields = ('charge_id','room_id', 'amount', 'date')
-
+    fieldsets = (
+        (None, { 
+            'fields': ('charge_id','room_id', 'amount', 'date', 'status'),
+        }),
+    )
     class Media:
         css = {
             'all': ('css/custom_admin.css',)  # Custom CSS for admin panel
@@ -177,6 +181,7 @@ class PaymentIn4(admin.ModelAdmin):
         extra_context = extra_context or {}
         extra_context['show_save_and_add_another'] = False  # Disable "Save and add another"
         extra_context['show_save_and_continue'] = False  # Disable "Save and continue editing"
+        extra_context['show_delete'] = False  # Disable "Delete" button
         return super().changeform_view(request, object_id, form_url, extra_context)
     
 admin.site.register(Payment,PaymentIn4)
