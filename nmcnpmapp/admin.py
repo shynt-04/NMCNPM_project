@@ -33,9 +33,10 @@ class ArticleAdmin(admin.ModelAdmin):
         return super().changeform_view(request, object_id, form_url, extra_context)
 admin.site.register(Article, ArticleAdmin)
 
-# Customized admin for RoomUser
+
 @admin.register(RoomUser)
 class RoomUser(admin.ModelAdmin):
+    form = forms.RoomUserForm
     list_display = ['username', 'room_id', 'registry_email','phone_number','is_approved']
     search_fields = ['username', 'room_id__room_id', 'registry_email','phone_number','is_approved']
     exclude = ['last_login','password', 'is_active']
@@ -191,10 +192,10 @@ class ApartIn4(admin.ModelAdmin):
     search_fields = ('room_id', 'area')
 # admin.site.register(apartment,ApartIn4)
 class FamilyMemberAdmin(admin.ModelAdmin):
-    list_display = ('room_id', 'first_name', 'last_name', 'date_of_birth', 'email', 'phone_number')
+    form = forms.FamilyMemberForm
+    list_display = ('room_id', 'first_name', 'last_name', 'date_of_birth','cccd', 'email', 'phone_number')
     search_fields = ('first_name', 'last_name', 'email', 'phone_number')
     list_filter = ('room_id',)
-    readonly_fields = ('room_id',)
     class Media:
         css = {
             'all': ('css/custom_admin.css',) 
@@ -212,10 +213,10 @@ class FamilyMemberAdmin(admin.ModelAdmin):
         return super().changeform_view(request, object_id, form_url, extra_context)
     # Organize fields into sections in the detail view
     fieldsets = (
-        (None, {
-            'fields': ('room_id', 'first_name', 'last_name', 'date_of_birth')
+        ('Thông tin cá nhân', {
+            'fields': ('room_id', 'first_name', 'last_name', 'date_of_birth','cccd')
         }),
-        ('Contact Information', {
+        ('Thông tin liên hệ', {
             'fields': ('email', 'phone_number')
         }),
     )

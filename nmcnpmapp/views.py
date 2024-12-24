@@ -9,7 +9,7 @@ from django.views import generic
 from django.contrib.auth.models import Group
 from django.contrib import messages
 from django.http import JsonResponse
-
+import re
 
 
 def login_view(request):
@@ -132,7 +132,9 @@ def add_member(request):
         if not (first_name and last_name and dob and email and phone_number and cccd):
             messages.error(request, "Vui lòng nhập đầy đủ thông tin hợp lệ.")
             return redirect('service')
-
+        if not re.match(r'^\d{12}$', cccd):
+            messages.error(request, "CCCD không hợp lệ. Vui lòng nhập 12 chữ số.")
+            return redirect('service')
         try:
             # Tạo thành viên mới
             FamilyMember.objects.create(

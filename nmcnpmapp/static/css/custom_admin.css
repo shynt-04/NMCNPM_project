@@ -21,6 +21,15 @@ input, select, textarea {
     margin-bottom: 10px;
     width: 80%;
 }
+.readonly {
+    padding: 10px;
+    border: 1px solid #888;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    width: calc(100% + 20px);; /* Điều chỉnh kích thước tại đây */
+    background-color: #f9f9f9; /* Tùy chọn màu nền cho readonly */
+    color: #666; /* Tùy chọn màu chữ */
+}
 
 
 

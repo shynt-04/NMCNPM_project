@@ -8,7 +8,7 @@ import pandas as pd
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 import datetime
-
+import re
 # Custom form for creating RoomUser accounts
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
@@ -226,4 +226,29 @@ class ArticleForm(forms.ModelForm):
                 'style': 'width: 80%; min-height: 200px;',  # Tăng chiều rộng và chiều cao
             }),
         }
+class RoomUserForm(forms.ModelForm):
+    class Meta:
+        model = RoomUser
+        fields = '__all__'
+
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data.get('phone_number')
+        if not re.match(r'^\d{10}$', phone_number):
+            raise ValidationError("Số điện thoại phải có 10 chữ số và không có ký tự khác.")
+        return phone_number
+class FamilyMemberForm(forms.ModelForm):
+    class Meta:
+        model = models.FamilyMember
+        fields = '__all__'
+
+    def clean(self):
+        cleaned_data = super().clean()
+        phone_number = cleaned_data.get('phone_number')
+        if not re.match(r'^\d{10}$', phone_number):
+            raise ValidationError("Số điện thoại phải có 10 chữ số và không có ký tự khác.")
+        cccd  = cleaned_data.get('cccd')
         
+        if not re.match(r'^\d{12}$', cccd):
+            raise ValidationError("Số CCCD phải có 12 chữ số và không có ký tự khác.")
+        
+        return cleaned_data
