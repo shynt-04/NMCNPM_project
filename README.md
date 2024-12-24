@@ -9,22 +9,21 @@ TODO!!
 | [Nguyễn Ngọc Kiệt]   | 20220052 | Thành viên | Frontend (Lập trình), Kiểm thử (Test) |
 | [Lê Danh Vinh] | 20220051 | Thành viên | Frontend (Lập trình)                  |
 ## Cài đặt (Install & Config)
+1. Tạo môi trường ảo trên Windows
+- Nhấn  <Win + R> gõ “cmd” để mở Command Prompt
+- Di chuyển đến thư mục muốn tạo môi trường ảo thông qua lệnh “cd” . Ví dụ: cd D:/test
+- Tạo môi trường ảo bằng lệnh sau: python -m venv venv
+- Sử dụng lệnh venv\Scripts\activate để kích hoạt môi trường ảo
+
 1. Tải repository
 ```
 git clone https://github.com/shynt-04/NMCNPM_project.git
+cd NMCNPM_project
 ```
 2. Cài đặt thư viện Django
 ```
-pip install django
-python -m django --version
-pip install django-unfold
-pip install django-widget-tweaks
-pip install django-colorfield
-pip install django-admin-interface
-pip install pandas
+pip install -r requirements.txt
 ```
-Yêu cầu Django phiên bản 4.2.8 trở lên
-
 ## Chạy phần mềm trên local (Local Deployment)
 Sau khi tải các thư viện cần thiết, có thể chạy ứng dụng với lệnh sau:
 ```
@@ -32,12 +31,13 @@ python manage.py runserver
 ```
 Ứng dụng sẽ được chạy local ở [http://localhost:8000](http://localhost:8000) (8000 là port mặc định của Django)
 
-```
-Folder myproject
-```
 
+## Tạo tài khoản admin,
+Để tạo tài khoản admin, trên giao diện CMD di chuyển đến thư mục cài đặt của phần mềm (Ví dụ:D:/test/NMCNPM_project.git) chạy lệnh sau:
 
-## DEMO 
-TODO!!
+```bash
+python manage.py createsuperuser
+```
+Sau đó nhập thông tin cần thiết để tạo tài khoản admin.
 
 
