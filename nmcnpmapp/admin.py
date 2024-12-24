@@ -89,7 +89,10 @@ class ChargeAdmin(admin.ModelAdmin):
     # save charge into database
     def save_model(self, request, obj, form, change):
         # Lưu Charge trước
+        if not change:  # Khi thêm mới
+            obj.create_by = request.user  # Gán người tạo là admin đang đăng nhập
         super().save_model(request, obj, form, change)
+
 
         category = form.cleaned_data.get("category")
         excel_file = form.cleaned_data.get("excel_file")
@@ -143,7 +146,7 @@ admin.site.register(Vehicle,VehicleIn4)
 
 class PaymentIn4(admin.ModelAdmin):
     form = PaymentForm
-    list_display = ('room_id', 'amount', 'date', 'status')
+    list_display = ('get_charge_name','room_id', 'amount', 'date', 'status')
     search_fields = ('room_id__room_id', 'charge_id__name', 'status')
     list_filter = ('charge_id__name', 'room_id')
     readonly_fields = ('charge_id','room_id', 'amount', 'date')
@@ -160,9 +163,9 @@ class PaymentIn4(admin.ModelAdmin):
         return super().changelist_view(request, extra_context=extra_context)
 
     # Custom display for "charge name" with a column label
-    # @admin.display(description=_('Tên khoản thu'))  # Translatable column label
-    # def get_charge_name(self, obj):
-    #     return obj.charge_id.name if obj.charge_id else "N/A"
+    @admin.display(description=_('Tên khoản thu'))  # Translatable column label
+    def get_charge_name(self, obj):
+        return obj.charge_id.name if obj.charge_id else "N/A"
 
     # # Custom display for "status" with a column label
     # @admin.display(description=_('Trạng thái'))  # Translatable column label

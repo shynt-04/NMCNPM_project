@@ -76,6 +76,7 @@ class ChargeForm(forms.ModelForm):
     
     class Meta:
         model = Charge
+        exclude = ['create_by']
         fields = ['category','name', 'create_by', 'deadline']
 
     def clean(self):
