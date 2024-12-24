@@ -39,5 +39,6 @@ python manage.py runserver
 python manage.py createsuperuser
 ```
 Sau đó nhập thông tin cần thiết để tạo tài khoản admin.
+Sau khi tạo tài khoản admin, bạn có thể dùng tài khoản này để đăng nhập vào trang quản trị của ứng dụng tại [http://localhost:8000/admin](http://localhost:8000/admin)
 
 
