@@ -12,15 +12,15 @@ TODO!!
 1. Tạo môi trường ảo trên Windows
 - Nhấn  <Win + R> gõ “cmd” để mở Command Prompt
 - Di chuyển đến thư mục muốn tạo môi trường ảo thông qua lệnh “cd” . Ví dụ: cd D:/test
-- Tạo môi trường ảo bằng lệnh sau: python -m venv venv
-- Sử dụng lệnh venv\Scripts\activate để kích hoạt môi trường ảo
-
-1. Tải repository
+- Tải repository
 ```
 git clone https://github.com/shynt-04/NMCNPM_project.git
 cd NMCNPM_project
 ```
-2. Cài đặt thư viện Django
+- Tạo môi trường ảo bằng lệnh sau: python -m venv venv
+- Sử dụng lệnh venv\Scripts\activate để kích hoạt môi trường ảo
+
+2. Cài đặt thư viện cần thiết
 ```
 pip install -r requirements.txt
 ```
