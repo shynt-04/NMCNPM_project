@@ -111,7 +111,7 @@ DATABASES = {
     }
 }
 
-CSRF_TRUSTED_ORIGINS = ['https://cf4532ce-9c5a-44a5-bee7-2dc6ef097c67-00-yqmj3xhjeze5.pike.replit.dev','https://serval-main-lizard.ngrok-free.app','https://33ac-2405-4802-1cdd-85d0-d99d-ec56-4ae6-952d.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['https://cf4532ce-9c5a-44a5-bee7-2dc6ef097c67-00-yqmj3xhjeze5.pike.replit.dev','https://serval-main-lizard.ngrok-free.app','https://33ac-2405-4802-1cdd-85d0-d99d-ec56-4ae6-952d.ngrok-free.app', 'https://d95f-2402-800-6d3e-1f76-a171-9e10-f45c-9586.ngrok-free.app']
 
 
 AUTH_PASSWORD_VALIDATORS = [
