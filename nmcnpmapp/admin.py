@@ -149,8 +149,10 @@ class PaymentIn4(admin.ModelAdmin):
     form = PaymentForm
     list_display = ('get_charge_name','room_id', 'amount', 'date', 'status')
     search_fields = ('room_id__room_id', 'charge_id__name', 'status')
-    list_filter = ('charge_id__name', 'room_id')
-    readonly_fields = ('charge_id','room_id', 'amount', 'date')
+    list_filter = ('status', 'charge_id__name', 'room_id')
+    # readonly_fields = ('charge_id','room_id', 'amount', 'date')
+    readonly_fields = ['date']
+
     fieldsets = (
         (None, { 
             'fields': ('charge_id','room_id', 'amount', 'date', 'status'),
