@@ -284,6 +284,11 @@
                             </tr>
                         {% endif %}
                     </tbody>
+                    <!-- In ra qr thanh toán tổng số tiền -->
+                    <div class="text-center mt-3">
+                        <button class="btn btn-primary" onclick="generateTotalQRCode()">Xem QR Code Tổng</button>
+                    </div>
+                    
                 </table>
             </div>
             <div class="modal-footer">
@@ -304,8 +309,8 @@
                 </button>
             </div>
             <div class="modal-body text-center">
-                <p><strong>Khoản thu:</strong> <span id="modal-khoan-thu"></span><br></p>
-                <p><strong>Phí:</strong> <span id="modal-phi"></span><br></p>
+                <p><strong>Khoản thu:</strong> <span id="modal-khoan-thu"></span></p>
+                <p><strong>Phí:</strong> <span id="modal-phi"></span></p>
                 <p><strong>Hạn nộp:</strong> <span id="modal-han-nop"></span></p>
                 <img id="modal-qr-img" src="" alt="QR Code chuyển khoản" class="qr-img">
             </div>
@@ -351,6 +356,40 @@
 
         // Show the modal
         $('#qrModal').modal('show');
+    }
+</script>
+
+<!-- js để tính qr tổng -->
+<script>
+    function generateTotalQRCode() {
+        const paymentRows = document.querySelectorAll('tr');
+        let total = 0;
+
+        // Loop through the payment rows and calculate the total of unpaid fees
+        paymentRows.forEach(row => {
+            const phiCell = row.querySelector('td:nth-child(2)');
+            const daDongCell = row.querySelector('td:nth-child(3)');
+            if (phiCell && daDongCell && daDongCell.textContent.trim() === 'Chưa đóng') {
+                const phi = parseInt(phiCell.textContent.replace(/\D/g, ''), 10); // Remove non-numeric characters
+                total += phi;
+            }
+        });
+
+        if (total > 0) {
+            // Populate modal content with total payment
+            document.getElementById('modal-khoan-thu').textContent = 'Tổng phí';
+            document.getElementById('modal-phi').textContent = total.toLocaleString() + ' đồng';
+            document.getElementById('modal-han-nop').textContent = 'N/A';
+
+            // Generate and set the QR Code URL for the total amount
+            const qrCodePath = `https://qr.sepay.vn/img?acc=1021555325&bank=Vietcombank&template=compact&amount=${total}&des=${encodeURIComponent('Tổng phí')}`;
+            document.getElementById('modal-qr-img').src = qrCodePath;
+
+            // Show the modal
+            $('#qrModal').modal('show');
+        } else {
+            alert('Không có khoản phí chưa đóng để tạo QR Code tổng.');
+        }
     }
 </script>
 

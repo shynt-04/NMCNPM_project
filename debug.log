@@ -6062,3 +6062,6 @@ Watching for file changes with StatReloader
 Not Found: /favicon.ico
 Not Found: /favicon.ico
 Not Found: /favicon.ico
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+couldn't import psycopg 'c' implementation: No module named 'psycopg_c'
+Watching for file changes with StatReloader
