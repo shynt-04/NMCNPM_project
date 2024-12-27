@@ -239,87 +239,99 @@
 
     <!-- Modal 2: Payment Status (Retain only the Payment Modal) -->
     <!-- Modal for Payment Status -->
-<!-- Main Modal for Payment Status -->
-<div class="modal fade" id="service2Modal" tabindex="-1" role="dialog" aria-labelledby="service2ModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="service2ModalLabel">Tình trạng đóng phí</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Khoản Thu</th>
-                            <th scope="col">Phí</th>
-                            <th scope="col">Tình trạng</th>
-                            <th scope="col">Hạn Nộp</th>
-                            <th scope="col">Chuyển khoản</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% if payment_info_list %}
-                            {% for info in payment_info_list %}
-                                <tr>
-                                    <td>{{ info.khoan_thu }}</td>
-                                    <td>{{ info.phi }} đồng</td>
-                                    <td>{% if info.da_dong %} Đã đóng {% else %} Chưa đóng {% endif %}</td>
-                                    <td>{{ info.han_nop }}</td>
-                                    <td>
-                                        {% if not info.da_dong %}
-                                        <button class="btn btn-info btn-sm" 
-                                                onclick="showQRCodeModal('{{ info.khoan_thu }}', '{{ info.phi }}', '{{ info.han_nop }}')">
-                                            Xem QR Code
-                                        </button>
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        {% else %}
+    <!-- Main Modal for Payment Status -->
+    <div class="modal fade" id="service2Modal" tabindex="-1" role="dialog" aria-labelledby="service2ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="service2ModalLabel">Tình trạng đóng phí</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
                             <tr>
-                                <td colspan="5">Chưa có thông tin đóng phí.</td>
+                                <th scope="col">Khoản Thu</th>
+                                <th scope="col">Phí</th>
+                                <th scope="col">Tình trạng</th>
+                                <th scope="col">Hạn Nộp</th>
+                                <th scope="col">Chuyển khoản</th>
                             </tr>
-                        {% endif %}
-                    </tbody>
-                    <!-- In ra qr thanh toán tổng số tiền -->
-                    <div class="text-center mt-3">
-                        <button class="btn btn-primary" onclick="generateTotalQRCode()">Xem QR Code Tổng</button>
-                    </div>
-                    
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        </thead>
+                        <tbody>
+                            {% if payment_info_list %}
+                                {% for info in payment_info_list %}
+                                    <tr>
+                                        <td>{{ info.khoan_thu }}</td>
+                                        <td>{{ info.phi }} đồng</td>
+                                        <td>{% if info.da_dong %} Đã đóng {% else %} Chưa đóng {% endif %}</td>
+                                        <td>{{ info.han_nop }}</td>
+                                        <td>
+                                            {% if not info.da_dong %}
+                                            <button class="btn btn-info btn-sm" 
+                                                    onclick="showQRCodeModal('{{ info.khoan_thu }}', '{{ info.phi }}', '{{ info.han_nop }}')">
+                                                Xem QR Code
+                                            </button>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="5">Chưa có thông tin đóng phí.</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                        <div class="text-center mt-3">
+                            <button class="btn btn-info btn-sm" onclick="generateTotalQRCode()" style="margin-bottom: 15px;"> Tổng Phí Cần Thanh Toán</button>
+                        </div>
+                        
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- QR Code Modal -->
-<div class="modal fade" id="qrModal" tabindex="-1" role="dialog" aria-labelledby="qrModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-qr" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="qrModalLabel">QR Code Chuyển Khoản</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body text-center">
-                <p><strong>Khoản thu:</strong> <span id="modal-khoan-thu"></span></p>
-                <p><strong>Phí:</strong> <span id="modal-phi"></span></p>
-                <p><strong>Hạn nộp:</strong> <span id="modal-han-nop"></span></p>
-                <img id="modal-qr-img" src="" alt="QR Code chuyển khoản" class="qr-img">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+    <!-- QR Code Modal -->
+    <div class="modal fade" id="qrModal" tabindex="-1" role="dialog" aria-labelledby="qrModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-qr" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="qrModalLabel">QR Code Chuyển Khoản</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <table class="table table-bordered text-left">
+                        <tbody>
+                            <tr>
+                                <th>Khoản thu:</th>
+                                <td id="modal-khoan-thu"></td>
+                            </tr>
+                            <tr>
+                                <th>Phí:</th>
+                                <td id="modal-phi"></td>
+                            </tr>
+                            <tr>
+                                <th>Hạn nộp:</th>
+                                <td id="modal-han-nop"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <img id="modal-qr-img" src="" alt="QR Code chuyển khoản" class="qr-img">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
 
 <!-- Toast messages -->
@@ -345,47 +357,39 @@
 <script>
     // Function to show QR Code modal with dynamic content
     function showQRCodeModal(khoanThu, phi, hanNop) {
-        // Populate modal content
         document.getElementById('modal-khoan-thu').textContent = khoanThu;
         document.getElementById('modal-phi').textContent = phi + ' đồng';
         document.getElementById('modal-han-nop').textContent = hanNop;
 
-        // Generate and set the QR Code URL
         const qrCodePath = `https://qr.sepay.vn/img?acc=1021555325&bank=Vietcombank&template=compact&amount=${phi}&des=${encodeURIComponent(khoanThu)}`;
         document.getElementById('modal-qr-img').src = qrCodePath;
 
-        // Show the modal
         $('#qrModal').modal('show');
     }
 </script>
 
-<!-- js để tính qr tổng -->
 <script>
     function generateTotalQRCode() {
         const paymentRows = document.querySelectorAll('tr');
         let total = 0;
 
-        // Loop through the payment rows and calculate the total of unpaid fees
         paymentRows.forEach(row => {
             const phiCell = row.querySelector('td:nth-child(2)');
             const daDongCell = row.querySelector('td:nth-child(3)');
             if (phiCell && daDongCell && daDongCell.textContent.trim() === 'Chưa đóng') {
-                const phi = parseInt(phiCell.textContent.replace(/\D/g, ''), 10); // Remove non-numeric characters
+                const phi = parseInt(phiCell.textContent.replace(/\D/g, ''), 10);
                 total += phi;
             }
         });
 
         if (total > 0) {
-            // Populate modal content with total payment
             document.getElementById('modal-khoan-thu').textContent = 'Tổng phí';
             document.getElementById('modal-phi').textContent = total.toLocaleString() + ' đồng';
             document.getElementById('modal-han-nop').textContent = 'N/A';
 
-            // Generate and set the QR Code URL for the total amount
-            const qrCodePath = `https://qr.sepay.vn/img?acc=1021555325&bank=Vietcombank&template=compact&amount=${total}&des=${encodeURIComponent('Tổng phí')}`;
+            const qrCodePath = `https://qr.sepay.vn/img?acc=106872812078&bank=Vietinbank&template=compact&amount=${total}&des=${encodeURIComponent('Tổng phí')}`;
             document.getElementById('modal-qr-img').src = qrCodePath;
 
-            // Show the modal
             $('#qrModal').modal('show');
         } else {
             alert('Không có khoản phí chưa đóng để tạo QR Code tổng.');
@@ -417,7 +421,7 @@
                     toast.style.display = 'none';
                 }, 3500); // 3.5s để biến mất
             });
-        });
+        }); 
     </script>
 
     <script>
